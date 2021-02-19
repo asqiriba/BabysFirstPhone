@@ -2,6 +2,7 @@ package com.example.babysfirstphone;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+//bank account: 123458
 public class MainActivity extends AppCompatActivity {
 
     @Override
