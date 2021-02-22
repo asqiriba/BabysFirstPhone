@@ -14,7 +14,6 @@
         android:layout_height="179dp"
         android:src="@drawable/img_avatar"
         android:scaleType="fitCenter"
-
         app:layout_constraintBottom_toTopOf="@+id/imageButton3"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintHorizontal_bias="0.5"
