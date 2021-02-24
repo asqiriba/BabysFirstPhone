@@ -1,36 +1,31 @@
 package com.example.babysfirstphone;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class SettingsInternal extends Fragment {
+public class SettingsInternal extends AppCompatActivity {
 
-    FloatingActionButton fab;
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.settings_internal, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.settings_internal);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.home_button);
+        FloatingActionButton fab = findViewById(R.id.home_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                openSettingsInternal();
             }
         });
-
-        return view;
     }
 
+    public void openSettingsInternal(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

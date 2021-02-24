@@ -34,7 +34,7 @@ public class SettingsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SettingsInternal.class));
+                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
 
@@ -43,13 +43,14 @@ public class SettingsFragment extends Fragment {
         buttonConfirm = (Button) view.findViewById(R.id.button_confirm);
         editTextSettings.addTextChangedListener(loginTextWatcher);
 
-//        String userNameInput = editTextSettings.getText().toString();
-//        if (userNameInput.equals("Settings")){
-//            startActivity(new Intent(getActivity(), SettingsInternal.class));
-//        }
-//        else{
-//            startActivity(new Intent(getActivity(), MainActivity.class));
-//        }
+
+        // Lets you into internal settings
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SettingsInternal.class));
+            }
+        });
 
         return view;
     }
