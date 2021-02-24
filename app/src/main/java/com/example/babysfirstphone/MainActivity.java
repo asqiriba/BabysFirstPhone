@@ -1,28 +1,60 @@
 package com.example.babysfirstphone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton imageButton;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageButton = (ImageButton) findViewById(R.id.image_button_android);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "It Works", Toast.LENGTH_LONG).show();
-            }
-        });
-        //
+
+
+        // Bottom Menu
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomePage()).commit();
+
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()){
+                case R.id.nav_settings:
+                    selectedFragment = new SettingsFragment();
+                    break;
+                case R.id.nav_emergency:
+                    selectedFragment = new EmergencyFragment();
+                    break;
+                case R.id.nav_groups:
+                    selectedFragment = new GroupsFragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return true;
+        }
+    };
+
+
 }
