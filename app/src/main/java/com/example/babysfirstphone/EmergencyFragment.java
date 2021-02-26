@@ -63,13 +63,6 @@ public class EmergencyFragment extends Fragment {
 
 
     }
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        if (requestCode == 101) {
-//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                callPhoneNumber();
-//            }
-//        }
-//    }
 
     public void callPhoneNumber(String phoneNum) {
         try {
