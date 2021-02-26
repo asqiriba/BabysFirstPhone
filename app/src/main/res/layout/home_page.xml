@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9A940" >
+
+    <!-- Old Button Style    -->
+    <ImageButton
+        android:id="@+id/image_button_android"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:src="@drawable/img_avatar"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_avatar"
+        tools:srcCompat="@drawable/img_avatar" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_avatar2"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/image_button_android"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_avatar2"
+        tools:srcCompat="@drawable/img_avatar2" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:src="@drawable/image_avatar3"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_button_android"
+        tools:src="@drawable/image_avatar3"
+        tools:srcCompat="@drawable/image_avatar3" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:src="@drawable/image_avatar4"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        tools:src="@drawable/image_avatar4"
+        tools:srcCompat="@drawable/image_avatar4" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:src="@drawable/img_avatar2"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        tools:src="@drawable/img_avatar2"
+        tools:srcCompat="@drawable/img_avatar2" />
+
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        tools:src="@drawable/img_avatar"
+        tools:srcCompat="@drawable/img_avatar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
