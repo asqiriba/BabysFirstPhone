@@ -4,4 +4,7 @@ public class Caller {
     /**
      *
      */
+    public void printAlert(){
+        System.out.println("Works");
+    }
 }
