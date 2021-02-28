@@ -8,8 +8,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.babysfirstphone.controllers.Caller;
@@ -19,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     // We make a Caller object, from Controllers/Caller.java
     Caller caller = new Caller();
-    private ImageButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Call interface
-        button = (ImageButton) findViewById(R.id.image_button_android);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                caller.printAlert();
-                callPhoneNumber();
-            }
-        });
+        ImageButton button = (ImageButton) findViewById(R.id.image_button_android);
+        button.setOnClickListener(view -> callPhoneNumber());
 
         // Bottom Menu
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -62,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
             };
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        /**
-         * This function checks on system permissions to make phone calls,
-         * then connects the phone call.
+        /*
+          This function checks on system permissions to make phone calls,
+          then connects the phone call.
          */
         if (requestCode == 101) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -74,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callPhoneNumber() {
+
+        // If permission is already given, connect a call.
         try {
             if (Build.VERSION.SDK_INT > 22) {
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !=PackageManager.PERMISSION_GRANTED) {
