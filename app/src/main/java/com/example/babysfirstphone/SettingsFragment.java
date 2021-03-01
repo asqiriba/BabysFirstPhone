@@ -1,6 +1,5 @@
 package com.example.babysfirstphone;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,16 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SettingsFragment extends Fragment {
-
     FloatingActionButton fab;
     private EditText editTextSettings;
     private Button buttonConfirm;
@@ -43,7 +39,6 @@ public class SettingsFragment extends Fragment {
         buttonConfirm = (Button) view.findViewById(R.id.button_confirm);
         editTextSettings.addTextChangedListener(loginTextWatcher);
 
-
         // Lets you into internal settings
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +53,6 @@ public class SettingsFragment extends Fragment {
     private TextWatcher loginTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
@@ -69,8 +63,6 @@ public class SettingsFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     };
-
 }

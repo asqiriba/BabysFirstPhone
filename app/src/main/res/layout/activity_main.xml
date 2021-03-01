@@ -15,6 +15,22 @@
         android:layout_above="@+id/bottom_navigation"
         android:layout_marginBottom="-7dp">
 
+    <ImageButton
+        android:id="@+id/image_button_android"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="149dp"
+        android:layout_height="179dp"
+        android:src="@drawable/img_avatar"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_avatar"
+        tools:srcCompat="@drawable/img_avatar" />
+
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
