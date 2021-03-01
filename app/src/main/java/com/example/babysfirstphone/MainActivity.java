@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 
+//bank account: 123458
 public class MainActivity extends AppCompatActivity {
 
 
