@@ -1,8 +1,11 @@
 package com.example.babysfirstphone.controllers;
 
-class Constants {
+public class Constants {
     private static final String TEL_APPEND = "tel:";
-    public static String EXAMPLE_PHONE_NO = TEL_APPEND.concat("805-401-7721");
+    public static String EXAMPLE_PHONE_NO = TEL_APPEND.concat("805-401-7700");
+
+    private String EMERGENCY_NO1 = "1-989-390-8100";
+    private String EMERGENCY_NO2 = "1-906-370-1900";
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -13,6 +16,28 @@ class Constants {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+
+    /**
+     * Getters
+     */
+    public String getEMERGENCY_NO1() {
+        return TEL_APPEND.concat(EMERGENCY_NO1);
+    }
+
+    public String getEMERGENCY_NO2() {
+        return TEL_APPEND.concat(EMERGENCY_NO2);
+    }
+
+    /**
+     * Setters
+     */
+    public void setEMERGENCY_NO1(String EMERGENCY_NO1) {
+        this.EMERGENCY_NO1 = EMERGENCY_NO1;
+    }
+
+    public void setEMERGENCY_NO2(String EMERGENCY_NO2) {
+        this.EMERGENCY_NO2 = EMERGENCY_NO2;
+    }
 
     /**
      * Debug support function for console monitoring.
