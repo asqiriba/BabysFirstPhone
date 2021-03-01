@@ -20,6 +20,18 @@ public class Caller {
     }
 
     /**
+     * Test call function. Takes the default example phone
+     * number from controllers/Constants.
+     * @param A String with a user phone number.
+     * @return Intent object.
+     */
+    public Intent makeCall(String phoneNo) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(phoneNo));
+        return intent;
+    }
+
+    /**
      * Function that handles everything related to connecting
      * phone calls.
      * @param textPhone A EditText containing
