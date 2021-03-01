@@ -22,7 +22,7 @@ public class Caller {
     /**
      * Test call function. Takes the default example phone
      * number from controllers/Constants.
-     * @param A String with a user phone number.
+     * @param phoneNo A String with a user phone number.
      * @return Intent object.
      */
     public Intent makeCall(String phoneNo) {
