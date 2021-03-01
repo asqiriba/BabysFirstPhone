@@ -13,7 +13,7 @@ public class Caller {
      * number from controllers/Constants.
      * @return Intent object.
      */
-    public Intent makeCall(){
+    public Intent makeCall() {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(EXAMPLE_PHONE_NO));
         return intent;
@@ -26,7 +26,7 @@ public class Caller {
      * the user's phone number.
      * @return Intent object.
      */
-    public Intent makeCallFromUser(EditText textPhone){
+    public Intent makeCallFromUser(EditText textPhone) {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + textPhone.getText().toString()));
         return intent;
