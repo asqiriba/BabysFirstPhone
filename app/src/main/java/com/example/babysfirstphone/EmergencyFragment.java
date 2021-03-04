@@ -2,6 +2,7 @@ package com.example.babysfirstphone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class EmergencyFragment extends Fragment {
     FloatingActionButton fab;
     ImageButton dadBtn;
     ImageButton momBtn;
+    ImageButton mapBtn;
 
     Caller caller = new Caller();
     Constants constants = new Constants();
@@ -41,6 +43,15 @@ public class EmergencyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(caller.makeCall(constants.getEMERGENCY_NO2()));
+            }
+        });
+
+        mapBtn = (ImageButton) view.findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), MapsActivity.class);
+                startActivity(in);
             }
         });
 
