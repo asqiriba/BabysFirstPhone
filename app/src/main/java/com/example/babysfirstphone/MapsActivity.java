@@ -42,6 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //request permission to use gps locations, send messages and internet
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED);
+//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
     }
 
@@ -73,11 +74,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
                     //set up the number you want to send the gps locations
-                    String phoneNumber = "906-370-1900";
-                    String myLatitude = String.valueOf(location.getAltitude());
+                    String phoneNumber = "906-370-1986";
+                    String myLatitude = String.valueOf(location.getLatitude());
                     String myLongitude = String.valueOf(location.getLongitude());
                     //create the text message
-                    String message = "Latitude - " + myLatitude + " Longitude - " + myLongitude;
+                    String message = "Latitude: " + myLatitude + " Longitude: " + myLongitude;
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNumber,null,message, null, null);
 
