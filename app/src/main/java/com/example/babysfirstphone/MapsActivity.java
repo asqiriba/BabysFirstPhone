@@ -42,7 +42,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //request permission to use gps locations, send messages and internet
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED);
-//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
     }
 
@@ -67,18 +66,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                //find the location and made a marker on the location
+                //find the real-time location, add a marker in the location and move the camera
                 try {
                     latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(latLng).title("My position"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
-                    //set up the number you want to send the gps locations
-                    String phoneNumber = "906-370-1986";
+                    //set up the number you want to send the gps information
+                    String phoneNumber = "906-370-1980";
                     String myLatitude = String.valueOf(location.getLatitude());
                     String myLongitude = String.valueOf(location.getLongitude());
                     //create the text message
-                    String message = "Latitude: " + myLatitude + " Longitude: " + myLongitude;
+                    String message = "http://maps.google.com/maps?q=" + myLatitude + "," + myLongitude + "&iwloc=A";
+
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNumber,null,message, null, null);
 

@@ -1,11 +1,15 @@
 package com.example.babysfirstphone;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +22,8 @@ import android.widget.ImageButton;
 import com.example.babysfirstphone.controllers.Caller;
 import com.example.babysfirstphone.controllers.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+
 
 public class EmergencyFragment extends Fragment {
 
@@ -41,6 +47,17 @@ public class EmergencyFragment extends Fragment {
                 startActivity(caller.makeCall(constants.getEMERGENCY_NO1()));
             }
         });
+        // code try to change the image button size based on the screen size(does not work yet)
+//        DisplayMetrics displaymetrics = new DisplayMetrics();
+//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+//        int height = displaymetrics.heightPixels;
+//        int width = displaymetrics.widthPixels;
+//        int size = Math.min(height, width);
+//        int buttonSize = Math.round(size * 0.8f);
+//        ImageButton momBtn = (ImageButton) view.findViewById(R.id.momBtn);
+//        momBtn.setMaxWidth(buttonSize);
+//        momBtn.setMaxHeight(buttonSize);
+
 
         momBtn = (ImageButton) view.findViewById(R.id.momBtn);
         momBtn.setOnClickListener(new View.OnClickListener() {
