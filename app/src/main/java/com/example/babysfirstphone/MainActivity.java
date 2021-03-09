@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     // We make a Caller object, from Controllers/Caller.java
     Caller caller = new Caller();
 
+    ///TODO: http://hackpundit.com/simple-contact-android-app/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
