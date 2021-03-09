@@ -2,7 +2,11 @@ package com.example.babysfirstphone.controllers;
 
 import java.io.Serializable;
 
-class Contacts implements Serializable{
+/**
+ * This class binds our ContactActivity with controllers/Contacts
+ * to handle user data.
+ */
+public class Contacts implements Serializable{
 
     private String contactName;
     private String contactNumber;
