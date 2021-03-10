@@ -3,7 +3,7 @@ package com.example.babysfirstphone.controllers;
 import java.io.Serializable;
 
 /**
- * This class binds our ContactActivity with controllers/Contacts
+ * This class binds our ContactDataActivity with controllers/Contacts
  * to handle user data.
  */
 public class Contacts implements Serializable{

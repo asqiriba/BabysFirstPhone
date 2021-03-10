@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the helper button */
     public void testContactActivity(View view) {
-        Intent intent = new Intent(getBaseContext(), ContactData.class);
+        Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
         startActivity(intent);
     }
 }
