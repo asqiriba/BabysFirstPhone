@@ -5,10 +5,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.view.View;
 
 import com.example.babysfirstphone.controllers.Caller;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         // Call interface
@@ -79,5 +82,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    /** Called when the user taps the helper button */
+    public void testContactActivity(View view) {
+        Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
+        startActivity(intent);
     }
 }
