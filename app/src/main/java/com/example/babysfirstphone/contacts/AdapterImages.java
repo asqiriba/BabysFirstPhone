@@ -1,4 +1,4 @@
-package com.example.babysfirstphone;
+package com.example.babysfirstphone.contacts;
 
 import android.content.Context;
 import android.view.View;
