@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Call interface
-        ImageButton button = (ImageButton) findViewById(R.id.image_button_android);
-        button.setOnClickListener(view -> callPhoneNumber());
+        ImageButton im_contact = (ImageButton) findViewById(R.id.image_button_android);
+        im_contact.setOnClickListener(view -> callPhoneNumber());
 
         // Bottom Menu
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);

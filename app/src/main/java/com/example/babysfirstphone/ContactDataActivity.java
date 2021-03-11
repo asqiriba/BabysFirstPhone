@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
 
+/*
+    In ContactDataActivity class, we take the inputs from user like Name, Number,
+    and Profile Photo.
+ */
 public class ContactDataActivity extends Activity {
 
     EditText editName, editNumber;
