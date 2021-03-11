@@ -3,11 +3,12 @@ package com.example.babysfirstphone;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
 
 public class ContactDataActivity extends Activity {
@@ -22,9 +23,9 @@ public class ContactDataActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_data);
 
-        editName= (EditText) findViewById(R.id.editName);
-        editNumber= (EditText) findViewById(R.id.editNumber);
-        contactImage= (ImageView) findViewById(R.id.ContactImage);
+        editName = (EditText) findViewById(R.id.editName);
+        editNumber = (EditText) findViewById(R.id.editNumber);
+        contactImage = (ImageView) findViewById(R.id.ContactImage);
         saveButton = (Button) findViewById(R.id.save);
 
         /*
@@ -38,7 +39,7 @@ public class ContactDataActivity extends Activity {
                     After clicking on image the User is to move to controllers/Images Activity
                     page where user select the profile picture of contact.
                  */
-                Intent intent= new Intent(ContactDataActivity.this, MediaStore.Images.class);
+                Intent intent= new Intent(ContactDataActivity.this, Images.class);
 
                 /*
                     Here we used startActivityForResult() as we expecting some data back from Images
