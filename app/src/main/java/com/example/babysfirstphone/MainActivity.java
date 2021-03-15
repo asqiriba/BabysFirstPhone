@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Call interface
-        ImageButton im_contact = (ImageButton) findViewById(R.id.image_button_android);
-        im_contact.setOnClickListener(view -> callPhoneNumber());
+//        // Call interface
+//        ImageButton im_contact = (ImageButton) findViewById(R.id.image_button_android);
+//        im_contact.setOnClickListener(view -> callPhoneNumber());
 
         // Bottom Menu
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -137,11 +137,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Called when the user taps the helper button */
-    public void testContactActivity(View view) {
-        Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
-        startActivity(intent);
-    }
+//    /** Called when the user taps the helper button */
+//    public void testContactActivity(View view) {
+//        Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
+//        startActivity(intent);
+//    }
 
     /*
         Menu render when long-press.
@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
                 Intent intent = new Intent(MainActivity.this, ContactDetails.class);
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                int index1 = info.position;
+                AdapterView.AdapterContextMenuInfo infoView = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                int index1 = infoView.position;
 
                 intent.putExtra("details", arrayListContact.get(index1));
 
@@ -175,8 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
             case CONTACT_DELETE:
                 Toast.makeText(MainActivity.this, "Delete",Toast.LENGTH_SHORT).show();
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                int index = info.position;
+                AdapterView.AdapterContextMenuInfo infoDelete = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                int index = infoDelete.position;
 
                 Log.e("index", index + " ");
                 arrayListContact.remove(index);
