@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         if (v.getId() == R.id.listView) {
-            menu.add(0, CONTACT_VIEW, 1, "View");
+            menu.add(0, CONTACT_VIEW, 1, "Call");
             menu.add(0, CONTACT_DELETE, 2, "Delete");
         }
     }
@@ -164,17 +164,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
-                Intent intent = new Intent(MainActivity.this, ContactDetails.class);
-                AdapterView.AdapterContextMenuInfo infoView = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                int index1 = infoView.position;
-
-                intent.putExtra("details", arrayListContact.get(index1));
-
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, ContactDetails.class);
+//                AdapterView.AdapterContextMenuInfo infoView = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//                int index1 = infoView.position;
+//
+//                intent.putExtra("details", arrayListContact.get(index1));
+//
+//                startActivity(intent);
+        // Call interface
+                ///TODO: Make phonecalls to each contact.
+                callPhoneNumber();
                 break;
 
             case CONTACT_DELETE:
-                Toast.makeText(MainActivity.this, "Delete",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Delete", Toast.LENGTH_SHORT).show();
                 AdapterView.AdapterContextMenuInfo infoDelete = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 int index = infoDelete.position;
 
