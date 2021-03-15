@@ -37,15 +37,12 @@ public class ContactDetails extends Activity {
         Intent intent9 = getIntent();
         ContactDetails = (Contacts) intent9.getSerializableExtra("details");
 
-        contactImage =ContactDetails.getImageId();
-        contactNumber =ContactDetails.getNumber();
-        contactName =ContactDetails.getName();
-
+///TODO: Set a default contact image in case tthe user sets None.
+        contactImage = ContactDetails.getImageId();
+        contactNumber = ContactDetails.getNumber();
+        contactName = ContactDetails.getName();
 
         tv_name.setText(contactName);
-
-
-
         tv_number.setText(contactNumber);
         iv_image.setImageResource(contactImage);
 

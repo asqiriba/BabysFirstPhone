@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //                startActivity(intent);
         // Call interface
-                ///TODO: Make phonecalls to each contact.
+///TODO: Make phonecalls to each contact.
                 callPhoneNumber();
                 break;
 
