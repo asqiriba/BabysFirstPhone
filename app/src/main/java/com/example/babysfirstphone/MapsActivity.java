@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
                     //set up the number you want to send the gps information
-                    String phoneNumber = "906-370-1980";
+                    String phoneNumber = "906-370-1986";
                     String myLatitude = String.valueOf(location.getLatitude());
                     String myLongitude = String.valueOf(location.getLongitude());
                     //create the text message
