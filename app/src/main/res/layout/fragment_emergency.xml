@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light">
+    android:id="@+id/emergency"
+    android:background="@drawable/a">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/home_button"
@@ -36,7 +38,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/image_avatar3"
+        android:src="@drawable/office_worker_icon"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,18 +64,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dadBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_avatar2" />
-
+        android:src="@drawable/feman_helper_icon"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:id="@+id/mapBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="76dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/treasure_map_icon"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/momBtn"
-        app:srcCompat="@mipmap/map_launcher" />
+        app:layout_constraintTop_toBottomOf="@+id/momBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

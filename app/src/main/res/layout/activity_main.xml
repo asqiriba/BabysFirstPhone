@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/1.png"
+    android:background="@drawable/a"
     android:id="@+id/home_start"
     tools:context=".MainActivity">
 
@@ -15,21 +15,34 @@
         android:layout_above="@+id/bottom_navigation"
         android:layout_marginBottom="-7dp">
 
-    <ImageButton
-        android:id="@+id/image_button_android"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="149dp"
-        android:layout_height="179dp"
-        android:src="@drawable/img_avatar"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/img_avatar"
-        tools:srcCompat="@drawable/img_avatar" />
+        <ImageButton
+            android:id="@+id/image_button_android"
+            android:layout_width="149dp"
+            android:layout_height="179dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/girl_icon"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/girl_icon"
+            tools:srcCompat="@drawable/girl_icon" />
+
+        <ImageButton
+            android:id="@+id/paint"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom|right"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/brush_for_paint_icon"/>
+<!--            tools:src="@drawable/brush_for_paint_icon"-->
+<!--            tools:srcCompat="@drawable/brush_for_paint_icon" />-->
+
 
     </FrameLayout>
 
