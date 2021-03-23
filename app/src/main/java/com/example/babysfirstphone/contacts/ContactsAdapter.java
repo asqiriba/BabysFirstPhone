@@ -61,14 +61,14 @@ public class ContactsAdapter extends BaseAdapter {
         }
 
         else {
-            view=convertView;
+            view = convertView;
         }
 
         ImageView imgContact = (ImageView) view.findViewById(R.id.contactImage);
         TextView contactName = (TextView) view.findViewById(R.id.contactName);
 
         //Retrieve data.
-        Contacts contacts=contact.get(position);
+        Contacts contacts = contact.get(position);
         imgContact.setImageResource(contacts.getImageId());
         contactName.setText(contacts.getName());
         System.getProperty("line.separator");

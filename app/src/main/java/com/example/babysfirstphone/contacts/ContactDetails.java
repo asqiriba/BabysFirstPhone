@@ -34,8 +34,8 @@ public class ContactDetails extends Activity {
         tv_name = (TextView) findViewById(R.id.editName);
         tv_number = (TextView) findViewById(R.id.editNumber);
 
-        Intent intent9 = getIntent();
-        ContactDetails = (Contacts) intent9.getSerializableExtra("details");
+        Intent intent = getIntent();
+        ContactDetails = (Contacts) intent.getSerializableExtra("details");
 
 ///TODO: Set a default contact image in case tthe user sets None.
         contactImage = ContactDetails.getImageId();

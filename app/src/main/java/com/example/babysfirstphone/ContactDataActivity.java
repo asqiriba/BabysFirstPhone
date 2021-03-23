@@ -42,7 +42,7 @@ public class ContactDataActivity extends Activity {
                     After clicking on image the User is to move to controllers/Images Activity
                     page where user select the profile picture of contact.
                  */
-                Intent intent= new Intent(ContactDataActivity.this, Images.class);
+                Intent intent = new Intent(ContactDataActivity.this, Images.class);
 
                 /*
                     Here we used startActivityForResult() as we expecting some data back from Images
