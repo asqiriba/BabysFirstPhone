@@ -23,7 +23,4 @@
         android:src="@drawable/ic_baseline_keyboard_return_24"
         android:id="@+id/home_button"/>
 
-
-
-
 </RelativeLayout>

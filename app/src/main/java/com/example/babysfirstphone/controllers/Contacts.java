@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class binds our ContactDataActivity with controllers/Contacts
  * to handle user data.
  */
-public class Contacts implements Serializable{
+public class Contacts implements Serializable {
 
     private String contactName;
     private String contactNumber;
