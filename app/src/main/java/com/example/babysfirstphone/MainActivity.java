@@ -15,15 +15,27 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.view.View;
+import android.widget.ListView;
+import android.view.ContextMenu;
+import android.widget.Toast;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.example.babysfirstphone.contacts.ContactDetails;
+import com.example.babysfirstphone.contacts.ContactsAdapter;
 import com.example.babysfirstphone.controllers.Caller;
+import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
     List<Integer> images;
     Adapter adapter;
 
+
+    // We used ArrayList because its size can be increased or reduced dynamically.
+//    ArrayList<Contacts> arrayListContact;
+//    ContactsAdapter contactAdapter;
+//    Contacts contacts;
+//
+//    Button contactAddButton;
+//    ListView listContacts;
+//
+//    final int CONTACT_VIEW = 1, CONTACT_DELETE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new GroupsFragment();
                         break;
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
             };

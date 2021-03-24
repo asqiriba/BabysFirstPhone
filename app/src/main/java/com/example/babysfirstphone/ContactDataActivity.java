@@ -42,7 +42,7 @@ public class ContactDataActivity extends Activity {
                     After clicking on image the User is to move to controllers/Images Activity
                     page where user select the profile picture of contact.
                  */
-                Intent intent= new Intent(ContactDataActivity.this, Images.class);
+                Intent intent = new Intent(ContactDataActivity.this, Images.class);
 
                 /*
                     Here we used startActivityForResult() as we expecting some data back from Images
@@ -72,9 +72,9 @@ public class ContactDataActivity extends Activity {
 
                 /*
                     When user click the SAVE button, the activity goes from here to
-                    MainActivity.java file. We might want to change this.
+                    SettingsInternal.java file. We might want to change this.
                  */
-                Intent intent = new Intent(ContactDataActivity.this, MainActivity.class);
+                Intent intent = new Intent(ContactDataActivity.this, SettingsInternal.class);
 
                 /*
                     We can’t send the Object of a class using Intent without implementing

@@ -17,7 +17,7 @@ import com.example.babysfirstphone.R;
 public class Images extends Activity {
 
     /*
-        Here we created the array of images.
+        Here we created the array of mock images.
      */
     private int [] arrayOfImages =
     {       R.drawable.img_avatar,R.drawable.img_avatar2,R.drawable.image_avatar3,R.drawable.image_avatar4,
