@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         titles.add("placeholder");
         titles.add("placeholder");
         titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
 
 
         images.add(R.drawable.img_avatar);
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
         images.add(R.drawable.img_avatar);
-//        images.add(R.drawable.img_avatar2);
-//        images.add(R.drawable.image_avatar3);
-//        images.add(R.drawable.img_avatar);
-//        images.add(R.drawable.img_avatar2);
-//        images.add(R.drawable.image_avatar3);
+        images.add(R.drawable.img_avatar2);
+        images.add(R.drawable.image_avatar3);
+        images.add(R.drawable.img_avatar);
+        images.add(R.drawable.img_avatar2);
+        images.add(R.drawable.image_avatar3);
 
 
 
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         mainScreen = findViewById(R.id.home_start);
         paintBtn = (ImageButton) findViewById(R.id.paint);
 
+
+        paintBtn = (ImageButton) findViewById(R.id.paint);
         paintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
