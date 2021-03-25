@@ -16,23 +16,6 @@
         android:layout_marginBottom="-7dp">
 
         <ImageButton
-            android:id="@+id/image_button_android"
-            android:layout_width="149dp"
-            android:layout_height="179dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/girl_icon"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton3"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/girl_icon"
-            tools:srcCompat="@drawable/girl_icon" />
-
-        <ImageButton
             android:id="@+id/paint"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -40,10 +23,11 @@
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/brush_for_paint_icon"/>
-<!--            tools:src="@drawable/brush_for_paint_icon"-->
-<!--            tools:srcCompat="@drawable/brush_for_paint_icon" />-->
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dataList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

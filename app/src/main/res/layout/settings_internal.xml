@@ -5,12 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_purple">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inside Settings"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Inside Settings"-->
+<!--        android:textSize="30sp" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -22,6 +21,14 @@
         app:fabSize="normal"
         android:src="@drawable/ic_baseline_keyboard_return_24"
         android:id="@+id/home_button"/>
+
+    <Button
+        android:id="@+id/contactButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="testContactActivity"
+        android:text="Add New Contact"/>
 
 
 

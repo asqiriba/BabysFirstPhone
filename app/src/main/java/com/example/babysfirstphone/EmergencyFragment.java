@@ -19,13 +19,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import android.widget.ImageButton;
 import com.example.babysfirstphone.controllers.Caller;
 import com.example.babysfirstphone.controllers.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-
 
 public class EmergencyFragment extends Fragment {
 
@@ -52,17 +49,6 @@ public class EmergencyFragment extends Fragment {
                 startActivity(caller.makeCall(constants.getEMERGENCY_NO1()));
             }
         });
-        // code try to change the image button size based on the screen size(does not work yet)
-//        DisplayMetrics displaymetrics = new DisplayMetrics();
-//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-//        int height = displaymetrics.heightPixels;
-//        int width = displaymetrics.widthPixels;
-//        int size = Math.min(height, width);
-//        int buttonSize = Math.round(size * 0.8f);
-//        ImageButton momBtn = (ImageButton) view.findViewById(R.id.momBtn);
-//        momBtn.setMaxWidth(buttonSize);
-//        momBtn.setMaxHeight(buttonSize);
-
 
         momBtn = (ImageButton) view.findViewById(R.id.momBtn);
         momBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,11 +71,7 @@ public class EmergencyFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                startActivity(new Intent(getActivity(), MainActivity.class));
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
 

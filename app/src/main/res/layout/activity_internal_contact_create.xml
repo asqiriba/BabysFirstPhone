@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_purple">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="410dp"
+        android:layout_weight="0.58"
+        android:id="@+id/listView">
+    </ListView>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="-7dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Add Contacts"
+            android:id="@+id/contactAddButton"
+            android:background="#000000"
+            android:textColor="#ffff00"
+            android:textStyle="bold"/>
+    </FrameLayout>
+
+</RelativeLayout>
