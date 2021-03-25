@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     View mainScreen;
     ImageButton paintBtn;
-    int[] images;
+    int[] bgImages;
     String COLOR = "colorTheme";
 
     @Override
@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         titles.add("placeholder");
         titles.add("placeholder");
         titles.add("placeholder");
-        titles.add("placeholder");
-        titles.add("placeholder");
-        titles.add("placeholder");
-        titles.add("placeholder");
-        titles.add("placeholder");
+//        titles.add("placeholder");
+//        titles.add("placeholder");
+//        titles.add("placeholder");
+//        titles.add("placeholder");
+//        titles.add("placeholder");
 
 
         images.add(R.drawable.img_avatar);
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
         images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
+//        images.add(R.drawable.img_avatar2);
+//        images.add(R.drawable.image_avatar3);
+//        images.add(R.drawable.img_avatar);
+//        images.add(R.drawable.img_avatar2);
+//        images.add(R.drawable.image_avatar3);
 
 
 
@@ -111,17 +111,17 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomePage()).commit();
 
         // Set up paint buttons to change the background colors
-        images = new int[] {R.drawable.a, R.drawable.b,R.drawable.c, R.drawable.d, R.drawable.f,R.drawable.g };
+        bgImages = new int[] {R.drawable.a, R.drawable.b,R.drawable.c, R.drawable.d, R.drawable.f,R.drawable.g };
         mainScreen = findViewById(R.id.home_start);
         paintBtn = (ImageButton) findViewById(R.id.paint);
 
         paintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int aryLength = images.length;
+                int aryLength = bgImages.length;
                 Random random = new Random();
                 int rNum = random.nextInt(aryLength);
-                mainScreen.setBackgroundResource(images[rNum]);
+                mainScreen.setBackgroundResource(bgImages[rNum]);
 
                 // save that random number to a local storage
                 SharedPreferences sharedPreferences = getSharedPreferences(COLOR, MODE_PRIVATE);
