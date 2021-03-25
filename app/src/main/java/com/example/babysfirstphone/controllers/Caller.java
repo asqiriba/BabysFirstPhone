@@ -27,7 +27,7 @@ public class Caller {
      */
     public Intent makeCall(String phoneNo) {
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse(phoneNo));
+        intent.setData(Uri.parse("tel:" + phoneNo));
         return intent;
     }
 

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.babysfirstphone.contacts.ContactsAdapter;
+import com.example.babysfirstphone.controllers.Caller;
 import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,11 +24,12 @@ public class SettingsInternal extends AppCompatActivity {
     ArrayList<Contacts> arrayListContact;
     ContactsAdapter contactAdapter;
     Contacts contacts;
-
     Button contactAddButton;
     ListView listContacts;
 
     final int CONTACT_VIEW = 1, CONTACT_DELETE = 2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +40,19 @@ public class SettingsInternal extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                openSettingsInternal();
+                startActivity(new Intent(view.getContext(), MainActivity.class));
+            }
+        });
+
+        Button addContactButton = findViewById(R.id.contactButton);
+        addContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 openContactCreation();
             }
         });
     }
 
-    public void openSettingsInternal() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
-    }
 
     public void  openContactCreation() {
 
@@ -84,16 +88,8 @@ public class SettingsInternal extends AppCompatActivity {
             }
         });
 
-//        // Call interface
-//        ImageButton im_contact = (ImageButton) findViewById(R.id.image_button_android);
-//        im_contact.setOnClickListener(view -> callPhoneNumber());
     }
 
-    //    /** Called when the user taps the helper button */
-//    public void testContactActivity(View view) {
-//        Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
-//        startActivity(intent);
-//    }
 
     /*
         Menu render when long-press.
@@ -116,14 +112,6 @@ public class SettingsInternal extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
-//                Intent intent = new Intent(MainActivity.this, ContactDetails.class);
-//                AdapterView.AdapterContextMenuInfo infoView = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//                int index1 = infoView.position;
-//
-//                intent.putExtra("details", arrayListContact.get(index1));
-//
-//                startActivity(intent);
-                // Call interface
 ///TODO: Make phone call available to each contact.
 //                callPhoneNumber();
                 break;

@@ -28,7 +28,7 @@ public class Router extends AppCompatActivity {
 
     public void getData(){
         if(getIntent().getStringExtra("type").equals("phone")){
-            callPhoneNumber();
+            callPhoneNumber("1-805-123-4567");
         }
         else{
             Toast.makeText(this, getIntent().getStringExtra("type"), Toast.LENGTH_SHORT).show();
@@ -45,12 +45,12 @@ public class Router extends AppCompatActivity {
          */
         if (requestCode == 101) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                callPhoneNumber();
+                callPhoneNumber("1-805-123-4567");
             }
         }
     }
 
-    public void callPhoneNumber() {
+    public void callPhoneNumber(String phoneNumber) {
 
         // If permission is already given, connect a call.
         try {
@@ -61,7 +61,7 @@ public class Router extends AppCompatActivity {
                     return;
                 }
             }
-            startActivity(caller.makeCall());
+            startActivity(caller.makeCall(phoneNumber));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

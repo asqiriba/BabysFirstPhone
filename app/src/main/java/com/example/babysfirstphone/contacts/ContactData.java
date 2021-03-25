@@ -68,4 +68,5 @@ public class ContactData extends Activity {
         contactImage.setImageResource(image);
 
     }
+
 }

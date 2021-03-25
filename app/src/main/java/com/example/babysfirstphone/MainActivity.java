@@ -48,16 +48,6 @@ public class MainActivity extends AppCompatActivity {
     Adapter adapter;
 
 
-    // We used ArrayList because its size can be increased or reduced dynamically.
-//    ArrayList<Contacts> arrayListContact;
-//    ContactsAdapter contactAdapter;
-//    Contacts contacts;
-//
-//    Button contactAddButton;
-//    ListView listContacts;
-//
-//    final int CONTACT_VIEW = 1, CONTACT_DELETE = 2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,36 +61,31 @@ public class MainActivity extends AppCompatActivity {
         titles.add("phone");
         titles.add("video call");
         titles.add("website");
-        titles.add("AR");
-        titles.add("4");
-        titles.add("5");
-        titles.add("6");
-        titles.add("7");
-        titles.add("8");
-        titles.add("9");
-        titles.add("10");
-        titles.add("11");
-        titles.add("12");
-        titles.add("13");
-        titles.add("14");
-        titles.add("15");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+
 
         images.add(R.drawable.img_avatar);
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.image_avatar4);
         images.add(R.drawable.img_avatar);
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.image_avatar4);
         images.add(R.drawable.img_avatar);
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.image_avatar4);
         images.add(R.drawable.img_avatar);
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.image_avatar4);
+
+
 
 
         adapter = new Adapter(this, titles, images);
