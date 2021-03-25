@@ -37,6 +37,7 @@ import com.example.babysfirstphone.contacts.ContactsAdapter;
 import com.example.babysfirstphone.controllers.Caller;
 import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Random;
 
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         // Set up paint buttons to change the background colors
         bgImages = new int[] {R.drawable.a, R.drawable.b,R.drawable.c, R.drawable.d, R.drawable.f,R.drawable.g };
         mainScreen = findViewById(R.id.home_start);
-        paintBtn = (ImageButton) findViewById(R.id.paint);
+        paintBtn = (FloatingActionButton) findViewById(R.id.paint);
 
         paintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
