@@ -11,9 +11,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 
 import com.example.babysfirstphone.contacts.ContactsAdapter;
-import com.example.babysfirstphone.controllers.Caller;
 import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -40,7 +44,6 @@ public class SettingsInternal extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-///TODO: Write arrayListContact return here.
                 startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
@@ -54,12 +57,10 @@ public class SettingsInternal extends AppCompatActivity {
         });
     }
 
-
     public void  openContactCreation() {
-
         setContentView(R.layout.activity_internal_contact_create);
 
-        arrayListContact = new ArrayList<Contacts>();
+        loadData();
         listContacts = (ListView) findViewById(R.id.listView);
         contactAddButton = (Button) findViewById(R.id.contactAddButton);
 
@@ -91,7 +92,6 @@ public class SettingsInternal extends AppCompatActivity {
 
     }
 
-
     /*
         Menu render when long-press.
      */
@@ -100,7 +100,7 @@ public class SettingsInternal extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         if (v.getId() == R.id.listView) {
-//            menu.add(0, CONTACT_VIEW, 1, "Call");
+            menu.add(0, CONTACT_VIEW, 1, "Save");
             menu.add(0, CONTACT_DELETE, 2, "Delete");
         }
     }
@@ -113,6 +113,7 @@ public class SettingsInternal extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
+                saveData(arrayListContact);
                 break;
 
             case CONTACT_DELETE:
@@ -122,6 +123,11 @@ public class SettingsInternal extends AppCompatActivity {
 
                 Log.e("index", index + " ");
                 arrayListContact.remove(index);
+
+                //Rewrite the save file. may want to make this proc more efficient later.
+                deleteData();
+                saveData(arrayListContact);
+
                 contactAdapter.notifyDataSetChanged();
                 break;
         }
@@ -145,5 +151,45 @@ public class SettingsInternal extends AppCompatActivity {
     public void testContactActivity(View view) {
         Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
         startActivity(intent);
+    }
+
+    /*
+        Writes the created user into a json file for persistence.
+     */
+    private void saveData(ArrayList<Contacts> arrayListContact) {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(arrayListContact);
+        editor.putString("contact list", json);
+        editor.apply();
+    }
+
+    /*
+        Reads the created user into a json file for persistence.
+     */
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("task list", null);
+        Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
+        arrayListContact = gson.fromJson(json, type);
+
+        if (arrayListContact == null) {
+            arrayListContact = new ArrayList<Contacts>();
+        }
+    }
+
+    /*
+        To delete from file, go to View/Tool Windows/Device File Explorer; the file in which it's all
+        written is in /data/data/com.example.babysfirstphone/shared_prefs/shared preferences.xml
+     */
+    private void deleteData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
     }
 }
