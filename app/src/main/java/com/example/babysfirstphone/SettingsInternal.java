@@ -40,6 +40,7 @@ public class SettingsInternal extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+///TODO: Write arrayListContact return here.
                 startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
@@ -99,7 +100,7 @@ public class SettingsInternal extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         if (v.getId() == R.id.listView) {
-            menu.add(0, CONTACT_VIEW, 1, "Call");
+//            menu.add(0, CONTACT_VIEW, 1, "Call");
             menu.add(0, CONTACT_DELETE, 2, "Delete");
         }
     }
@@ -112,8 +113,6 @@ public class SettingsInternal extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
-///TODO: Make phone call available to each contact.
-//                callPhoneNumber();
                 break;
 
             case CONTACT_DELETE:
