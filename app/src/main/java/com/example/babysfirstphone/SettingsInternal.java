@@ -61,6 +61,10 @@ public class SettingsInternal extends AppCompatActivity {
         setContentView(R.layout.activity_internal_contact_create);
 
         loadData();
+
+        System.out.println("=======================================================================================");
+        System.out.println(arrayListContact.get(0));
+
         listContacts = (ListView) findViewById(R.id.listView);
         contactAddButton = (Button) findViewById(R.id.contactAddButton);
 
@@ -173,7 +177,7 @@ public class SettingsInternal extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
 
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list", null);
+        String json = sharedPreferences.getString("contact list", null);
         Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
         arrayListContact = gson.fromJson(json, type);
 
