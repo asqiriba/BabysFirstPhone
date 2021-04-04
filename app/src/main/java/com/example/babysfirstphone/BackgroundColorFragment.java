@@ -1,6 +1,7 @@
 package com.example.babysfirstphone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class BackgroundColorFragment extends Fragment {
 
@@ -18,6 +21,7 @@ public class BackgroundColorFragment extends Fragment {
     ImageButton greenBtn, redBtn, pinkBtn, purpleBtn, blueBtn, yellowBtn;
     int[] bgImages;
     String COLOR = "colorTheme";
+    FloatingActionButton fab;
 
 
 
@@ -25,6 +29,14 @@ public class BackgroundColorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_background_color, container, false);
+
+        fab = (FloatingActionButton) view.findViewById(R.id.home_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
         // Set up paint buttons to change the background colors
         bgImages = new int[] {R.drawable.green_background, R.drawable.red_background,R.drawable.pink_background, R.drawable.purple_background, R.drawable.blue_background, R.drawable.yellow_background };

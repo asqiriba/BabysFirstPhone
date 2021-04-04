@@ -121,14 +121,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_paint:
                         selectedFragment = new BackgroundColorFragment();
                         break;
-//                    case R.id.nav_settings:
-//                        selectedFragment = new SettingsFragment();
-//                        break;
                     case R.id.nav_emergency:
                         selectedFragment = new EmergencyFragment();
                         break;
                     case R.id.nav_groups:
                         selectedFragment = new GroupsFragment();
+                        break;
+                    case R.id.nav_settings:
+                        selectedFragment = new SettingsFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
