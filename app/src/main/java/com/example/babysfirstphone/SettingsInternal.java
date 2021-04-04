@@ -61,12 +61,8 @@ public class SettingsInternal extends AppCompatActivity {
         setContentView(R.layout.activity_internal_contact_create);
 
         loadData();
-
-        System.out.println("=======================================================================================");
-        System.out.println(arrayListContact.get(0));
-
-        listContacts = (ListView) findViewById(R.id.listView);
-        contactAddButton = (Button) findViewById(R.id.contactAddButton);
+        listContacts = findViewById(R.id.listView);
+        contactAddButton = findViewById(R.id.contactAddButton);
 
         /*
             Click Listener on Contact Button.
@@ -181,7 +177,7 @@ public class SettingsInternal extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
         arrayListContact = gson.fromJson(json, type);
 
-        if (arrayListContact == null) {
+        if (arrayListContact == null || arrayListContact.isEmpty()) {
             arrayListContact = new ArrayList<Contacts>();
         }
     }
