@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:onClick="testContactActivity"
-        android:text="Add New Contact"/>
+        android:text="Manage Contacts"/>
 
 
 
