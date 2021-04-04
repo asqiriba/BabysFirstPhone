@@ -125,8 +125,7 @@ public class SettingsInternal extends AppCompatActivity {
                 arrayListContact.remove(index);
 
                 //Rewrite the save file. may want to make this proc more efficient later.
-                deleteData();
-                saveData(arrayListContact);
+                deleteData(arrayListContact);
 
                 contactAdapter.notifyDataSetChanged();
                 break;
@@ -186,10 +185,15 @@ public class SettingsInternal extends AppCompatActivity {
         To delete from file, go to View/Tool Windows/Device File Explorer; the file in which it's all
         written is in /data/data/com.example.babysfirstphone/shared_prefs/shared preferences.xml
      */
-    private void deleteData() {
+    private void deleteData(ArrayList<Contacts> arrayListContact) {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().apply();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(arrayListContact);
+        editor.putString("contact list", json);
+        editor.apply();
     }
 }
