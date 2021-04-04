@@ -167,7 +167,14 @@ public class SettingsInternal extends AppCompatActivity {
 
     /*
         Reads the created user into a json file for persistence.
+
+        Usage:
+        ArrayList<Contacts> arrayListContact;
+        loadData();
+
      */
+
+
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
 
