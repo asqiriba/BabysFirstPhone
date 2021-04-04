@@ -1,49 +1,24 @@
 package com.example.babysfirstphone;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.view.View;
-import android.widget.ListView;
-import android.view.ContextMenu;
-import android.widget.Toast;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.Toast;
 
-import com.example.babysfirstphone.contacts.ContactDetails;
-import com.example.babysfirstphone.contacts.ContactsAdapter;
-import com.example.babysfirstphone.controllers.Caller;
-import com.example.babysfirstphone.controllers.Contacts;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Random;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton paintBtn;
     int[] bgImages;
     String COLOR = "colorTheme";
+    int getNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
         titles.add("placeholder");
         titles.add("placeholder");
         titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
-//        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
+        titles.add("placeholder");
 
 
         images.add(R.drawable.img_avatar);
@@ -90,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.img_avatar2);
         images.add(R.drawable.image_avatar3);
         images.add(R.drawable.img_avatar);
-//        images.add(R.drawable.img_avatar2);
-//        images.add(R.drawable.image_avatar3);
-//        images.add(R.drawable.img_avatar);
-//        images.add(R.drawable.img_avatar2);
-//        images.add(R.drawable.image_avatar3);
+        images.add(R.drawable.img_avatar2);
+        images.add(R.drawable.image_avatar3);
+        images.add(R.drawable.img_avatar);
+        images.add(R.drawable.img_avatar2);
+        images.add(R.drawable.image_avatar3);
 
 
 
@@ -108,30 +84,32 @@ public class MainActivity extends AppCompatActivity {
 
         // Bottom Menu
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        // Change the grey scale to colors
+        bottomNav.setItemIconTintList(null);
+        // Change the size of the icons in the bottom Navigation Bar
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNav.getChildAt(0);
+        for (int i = 0; i < menuView.getChildCount(); i++) {
+            final View iconView = menuView.getChildAt(i).findViewById(com.google.android.material.R.id.icon);
+            final ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
+            final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            // set your height here
+            layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, displayMetrics);
+            // set your width here
+            layoutParams.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, displayMetrics);
+            iconView.setLayoutParams(layoutParams);
+        }
+
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomePage()).commit();
 
         // Set up paint buttons to change the background colors
-        bgImages = new int[] {R.drawable.a, R.drawable.b,R.drawable.c, R.drawable.d, R.drawable.f,R.drawable.g };
+        bgImages = new int[] {R.drawable.green_background, R.drawable.red_background,R.drawable.pink_background, R.drawable.purple_background, R.drawable.blue_background, R.drawable.yellow_background  };
         mainScreen = findViewById(R.id.home_start);
-        paintBtn = (FloatingActionButton) findViewById(R.id.paint);
 
-        paintBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int aryLength = bgImages.length;
-                Random random = new Random();
-                int rNum = random.nextInt(aryLength);
-                mainScreen.setBackgroundResource(bgImages[rNum]);
+        SharedPreferences sharedPreferences = getSharedPreferences("colorTheme", Context.MODE_PRIVATE);
+        getNum = sharedPreferences.getInt("color",0);
+        mainScreen.setBackgroundResource(bgImages[getNum]);
 
-                // save that random number to a local storage
-                SharedPreferences sharedPreferences = getSharedPreferences(COLOR, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("color",rNum);
-                editor.commit();
-
-            }
-        });
 
     }
 
@@ -140,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selectedFragment = null;
 
                 switch (item.getItemId()){
-                    case R.id.nav_settings:
-                        selectedFragment = new SettingsFragment();
+                    case R.id.nav_paint:
+                        selectedFragment = new BackgroundColorFragment();
                         break;
                     case R.id.nav_emergency:
                         selectedFragment = new EmergencyFragment();
@@ -149,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_groups:
                         selectedFragment = new GroupsFragment();
                         break;
+
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;

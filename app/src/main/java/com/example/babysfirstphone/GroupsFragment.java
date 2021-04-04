@@ -39,7 +39,7 @@ public class GroupsFragment extends Fragment {
     }
 
     public void changeColor() {
-        images = new int[] {R.drawable.a, R.drawable.b,R.drawable.c, R.drawable.d, R.drawable.f,R.drawable.g };
+        images = new int[] {R.drawable.green_background, R.drawable.red_background,R.drawable.pink_background, R.drawable.purple_background, R.drawable.blue_background, R.drawable.yellow_background  };
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("colorTheme", Context.MODE_PRIVATE);
         getNum = sharedPreferences.getInt("color",0);
         groupScreen.setBackgroundResource(images[getNum]);

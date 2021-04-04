@@ -57,11 +57,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker at the home location and move the camera
+        LatLng home = new LatLng(37.3, -122);
+        mMap.addMarker(new MarkerOptions().position(home).title("Home"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
 
         locationListener = new LocationListener() {
             @Override
@@ -71,6 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(latLng).title("My position"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
                     //set up the number you want to send the gps information
                     String phoneNumber = "906-370-1986";
