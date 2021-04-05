@@ -33,8 +33,6 @@ public class SettingsInternal extends AppCompatActivity {
 
     final int CONTACT_VIEW = 1, CONTACT_DELETE = 2;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,7 +171,6 @@ public class SettingsInternal extends AppCompatActivity {
         loadData();
 
      */
-
 
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
