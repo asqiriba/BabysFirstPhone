@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
@@ -22,9 +23,9 @@
         android:theme="@style/Theme.BabysFirstPhone">
         <activity
             android:name=".Router"
+            android:label="Router"
             android:parentActivityName=".MainActivity"
-            android:label="@string/title_activity_router2"
-            android:theme="@style/Theme.BabysFirstPhone.NoActionBar"></activity>
+            android:theme="@style/Theme.BabysFirstPhone.NoActionBar" />
         <activity android:name=".contacts.Images" />
         <activity android:name=".ContactDataActivity" />
         <!--
@@ -46,6 +47,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <receiver android:name=".ReceiveSms">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

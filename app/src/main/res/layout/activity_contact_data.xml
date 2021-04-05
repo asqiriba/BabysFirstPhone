@@ -17,19 +17,18 @@
         android:layout_alignRight="@+id/save" />
 
     <EditText
+        android:id="@+id/editName"
         android:layout_width="294dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editName"
-        android:inputType="text"
-        android:textSize="24sp"
-        android:hint="Contact Name"
-        android:textColorHint="#ff84eb"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true" />
+        android:hint="Contact Name"
+        android:inputType="text"
+        android:textColorHint="#ff84eb"
+        android:textSize="24sp" />
 
     <EditText
-        android:layout_width="296dp"
+        android:layout_width="294dp"
         android:layout_height="wrap_content"
         android:id="@+id/editNumber"
         android:inputType="number"
