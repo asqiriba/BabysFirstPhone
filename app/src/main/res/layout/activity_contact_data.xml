@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/linearData">
+    android:background="@drawable/pink_background"
+    android:id="@+id/linearData"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/ContactImage"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/image_avatar3"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/editName"
-        android:layout_alignEnd="@+id/save"
-        android:layout_alignRight="@+id/save" />
+        android:src="@drawable/feman_helper_icon"
+        android:layout_alignParentTop="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/editName"/>
+<!--        android:layout_alignEnd="@+id/save"-->
+<!--        android:layout_alignRight="@+id/save" -->
 
     <EditText
-        android:id="@+id/editName"
         android:layout_width="294dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:hint="Contact Name"
+        android:id="@+id/editName"
         android:inputType="text"
-        android:textColorHint="#ff84eb"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:hint="Contact Name"
+        android:textColorHint="#A16AB6"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false" />
 
     <EditText
-        android:layout_width="294dp"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:id="@+id/editNumber"
         android:inputType="number"
         android:textSize="24sp"
         android:hint="Contact Number"
-        android:textColorHint="#ff9cda"
+        android:textColorHint="#A16AB6"
         android:layout_below="@+id/editName"
         android:layout_alignEnd="@+id/editName"
         android:layout_alignRight="@+id/editName" />
 
     <Button
+        android:background="@drawable/buttonshape"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         android:id="@+id/save"
@@ -48,7 +56,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="86dp"
-        android:background="#000000"
-        android:textColor="#ffffff"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"/>
 </RelativeLayout>

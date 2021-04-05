@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/emergency"
-    android:background="@drawable/a">
+    android:background="@drawable/pink_background">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,7 +38,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/office_worker_icon"
+        android:src="@drawable/image_avatar3"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dadBtn"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/feman_helper_icon"
+        android:src="@drawable/img_avatar2"
         android:background="@android:color/transparent"/>
 
     <ImageButton
