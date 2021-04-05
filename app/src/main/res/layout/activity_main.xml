@@ -28,23 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/buttonLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/paint"-->
-<!--                android:layout_width="86dp"-->
-<!--                android:layout_height="83dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                android:src="@drawable/brush_for_paint_icon"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/buttonLayout"-->
-<!--                app:layout_constraintLeft_toLeftOf="@+id/buttonLayout" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
