@@ -37,7 +37,7 @@
         android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:id="@+id/editNumber"
-        android:inputType="number"
+        android:inputType="phone"
         android:textSize="24sp"
         android:hint="Contact Number"
         android:textColorHint="#A16AB6"
