@@ -17,6 +17,8 @@ public class Constants {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
+    public static final String REGEX_CLEAN_PHONE_NO = "(?<!^\\s)\\+|[^\\d+]+";
+
     /**
      * Getters
      */

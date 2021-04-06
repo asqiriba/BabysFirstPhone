@@ -75,7 +75,6 @@ public class ContactDataActivity extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 /*
                     Here we created the object of Contact class and called the Parameterised
                     Constructor.
