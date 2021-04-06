@@ -26,9 +26,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -38,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView dataList;
     List<String> type;
     List<Integer> images;
+    List<String> imageID;
     List<String> info;
     Adapter adapter;
+    ArrayList<Contacts> arrayListContact;
 
     View mainScreen;
     ImageButton paintBtn;
@@ -57,10 +63,28 @@ public class MainActivity extends AppCompatActivity {
         type = new ArrayList<>();
         images = new ArrayList<>();
         info = new ArrayList<>();
+        imageID = new ArrayList<>();
+
+//        loadData();
+//        System.out.println(arrayListContact.get(0).getNumber());
+//
+//        for(int i = 0; i < arrayListContact.size() ; i++){
+//            type.add(arrayListContact.get(i).getType());
+//        }
+//
+//        for(int i = 0; i < arrayListContact.size() ; i++){
+//            imageID.add(arrayListContact.get(i).getImageId());
+//        }
+//
+//        for(int i = 0; i < arrayListContact.size() ; i++){
+//            info.add(arrayListContact.get(i).getNumber());
+//        }
+
+
 
         type.add("phone");
         type.add("video");
-        type.add("website");
+        type.add("app");
         type.add("placeholder");
         type.add("placeholder");
         type.add("placeholder");
@@ -143,6 +167,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    // Obtains stored contact info
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("contact list", null);
+        Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
+        arrayListContact = gson.fromJson(json, type);
+
+        if (arrayListContact == null || arrayListContact.isEmpty()) {
+            arrayListContact = new ArrayList<Contacts>();
+        }
     }
 
     // Read Texts Permission

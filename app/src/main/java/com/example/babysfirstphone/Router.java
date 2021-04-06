@@ -100,6 +100,8 @@ public class Router extends AppCompatActivity {
                     videoCallRequest = false;
                     String email = "babysfirstphone550@gmail.com";
                     String password = "CompSci550";
+
+
                     finish();
                 }
             }
