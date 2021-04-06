@@ -29,7 +29,7 @@ public class Contacts implements Serializable {
     }
 
     public String getNumber() {
-        return contactNumber;
+        return contactNumber.replaceAll(Constants.REGEX_CLEAN_PHONE_NO, "");
     }
 
     public void setNumber(String number) {

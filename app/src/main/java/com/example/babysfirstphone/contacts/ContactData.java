@@ -2,7 +2,6 @@ package com.example.babysfirstphone.contacts;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -28,16 +27,15 @@ public class ContactData extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_data);
 
-        editName = (EditText) findViewById(R.id.editName);
-        editNumber = (EditText) findViewById(R.id.editNumber);
-        contactImage = (ImageView) findViewById(R.id.ContactImage);
+        editName = findViewById(R.id.editName);
+        editNumber = findViewById(R.id.editNumber);
+        contactImage = findViewById(R.id.ContactImage);
         contactType = findViewById(R.id.dropdown);
-        saveButton = (Button) findViewById(R.id.save);
+        saveButton = findViewById(R.id.save);
 
         contactImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(ContactData.this, MediaStore.Images.class);
                 startActivityForResult(intent,1);
             }
@@ -46,7 +44,6 @@ public class ContactData extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Contacts contacts = new Contacts(editName.getText().toString(),
                         editNumber.getText().toString(),
                         image,
@@ -61,7 +58,6 @@ public class ContactData extends Activity {
                 finish();
             }
         });
-
     }
 
     @Override
@@ -73,7 +69,5 @@ public class ContactData extends Activity {
 //        contactImage.setImageDrawable(res);
 
         contactImage.setImageResource(image);
-
     }
-
 }
