@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /*
-        To retrieve an image from the contact ArrayList:
+        To retrieve an image from the contact ArrayList as an ImageView:
 
         ImageView iv_image;
         iv_image.setImageResource(arrayListContact.get(i).getImage());
