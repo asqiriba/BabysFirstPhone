@@ -34,6 +34,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    /*
+        To retrieve an image from the contact ArrayList:
+
+        ImageView iv_image;
+        iv_image.setImageResource(arrayListContact.get(i).getImage());
+     */
 
     RecyclerView dataList;
     List<String> type;
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFragment = null;
 

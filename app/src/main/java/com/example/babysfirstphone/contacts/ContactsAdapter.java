@@ -69,7 +69,7 @@ public class ContactsAdapter extends BaseAdapter {
 
         //Retrieve data.
         Contacts contacts = contact.get(position);
-        imgContact.setImageResource(contacts.getImageId());
+        imgContact.setImageResource(contacts.getImage());
         contactName.setText(contacts.getName());
         System.getProperty("line.separator");
         Log.e("name", contacts.getName() + " ");

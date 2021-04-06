@@ -2,6 +2,7 @@ package com.example.babysfirstphone.contacts;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -27,9 +28,9 @@ public class ContactData extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_data);
 
-        editName= (EditText) findViewById(R.id.editName);
-        editNumber= (EditText) findViewById(R.id.editNumber);
-        contactImage= (ImageView) findViewById(R.id.ContactImage);
+        editName = (EditText) findViewById(R.id.editName);
+        editNumber = (EditText) findViewById(R.id.editNumber);
+        contactImage = (ImageView) findViewById(R.id.ContactImage);
         contactType = findViewById(R.id.dropdown);
         saveButton = (Button) findViewById(R.id.save);
 
@@ -68,6 +69,9 @@ public class ContactData extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         image = data.getExtras().getInt("img",1);
+//        Drawable res = getResources().getDrawable(image);
+//        contactImage.setImageDrawable(res);
+
         contactImage.setImageResource(image);
 
     }
