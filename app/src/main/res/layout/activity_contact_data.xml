@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/pink_background"
     android:id="@+id/linearData"
@@ -17,9 +18,7 @@
         android:layout_alignParentTop="false"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/editName"/>
-<!--        android:layout_alignEnd="@+id/save"-->
-<!--        android:layout_alignRight="@+id/save" -->
+        android:layout_below="@id/dropdown"/>
 
     <EditText
         android:layout_width="294dp"
@@ -44,7 +43,20 @@
         android:textColorHint="#A16AB6"
         android:layout_below="@+id/editName"
         android:layout_alignEnd="@+id/editName"
-        android:layout_alignRight="@+id/editName" />
+        android:layout_alignRight="@+id/editName"/>
+
+    <Spinner
+        android:id="@+id/dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/editNumber"
+        android:background="@drawable/spinnershape"
+        android:textColor="#A16AB6"
+        android:gravity="center"
+        android:layout_marginVertical="10dp"
+        android:layoutDirection="rtl"
+        android:ellipsize="end"
+        android:spinnerMode="dropdown"/>
 
     <Button
         android:background="@drawable/buttonshape"

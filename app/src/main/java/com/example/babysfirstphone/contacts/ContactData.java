@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.example.babysfirstphone.MainActivity;
 import com.example.babysfirstphone.R;
@@ -16,6 +17,7 @@ import com.example.babysfirstphone.controllers.Contacts;
 public class ContactData extends Activity {
 
     EditText editName, editNumber;
+    Spinner contactType;
     ImageView contactImage;
     Button saveButton;
     private int image;
@@ -27,17 +29,16 @@ public class ContactData extends Activity {
 
         editName= (EditText) findViewById(R.id.editName);
         editNumber= (EditText) findViewById(R.id.editNumber);
-
         contactImage= (ImageView) findViewById(R.id.ContactImage);
+        contactType = findViewById(R.id.dropdown);
         saveButton = (Button) findViewById(R.id.save);
 
         contactImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent2 = new Intent(ContactData.this, MediaStore.Images.class);
-
-                startActivityForResult(intent2,1);
+                Intent intent = new Intent(ContactData.this, MediaStore.Images.class);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -47,12 +48,14 @@ public class ContactData extends Activity {
 
                 Contacts contacts = new Contacts(editName.getText().toString(),
                         editNumber.getText().toString(),
-                        image);
+                        image,
+                        String.valueOf(contactType.getSelectedItem())
+                );
 
-                Intent intent5 = new Intent(ContactData.this, MainActivity.class);
+                Intent intent = new Intent(ContactData.this, MainActivity.class);
 
-                intent5.putExtra("data",contacts);
-                setResult(2, intent5);
+                intent.putExtra("data",contacts);
+                setResult(2, intent);
 
                 finish();
             }

@@ -10,12 +10,14 @@ public class Contacts implements Serializable {
 
     private String contactName;
     private String contactNumber;
+    private String contactType;
     private int contactImageId;
 
-    public Contacts(String name, String number, int imageId) {
+    public Contacts(String name, String number, int imageId, String type) {
         this.contactName = name;
         this.contactNumber = number;
         this.contactImageId = imageId;
+        this.contactType = type;
     }
 
     public String getName() {
@@ -40,5 +42,13 @@ public class Contacts implements Serializable {
 
     public void setImageId(int imageId) {
         this.contactImageId = imageId;
+    }
+
+    public String getType() {
+        return contactType;
+    }
+
+    public void setContactType(String type) {
+        this.contactType = type;
     }
 }

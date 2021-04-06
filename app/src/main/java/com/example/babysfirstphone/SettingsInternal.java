@@ -55,6 +55,12 @@ public class SettingsInternal extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        saveData(arrayListContact);
+        finish();
+    }
+
     public void  openContactCreation() {
         setContentView(R.layout.activity_internal_contact_create);
 
@@ -98,7 +104,7 @@ public class SettingsInternal extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         if (v.getId() == R.id.listView) {
-            menu.add(0, CONTACT_VIEW, 1, "Save");
+//            menu.add(0, CONTACT_VIEW, 1, "Save");
             menu.add(0, CONTACT_DELETE, 2, "Delete");
         }
     }
@@ -111,7 +117,6 @@ public class SettingsInternal extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
-                saveData(arrayListContact);
                 break;
 
             case CONTACT_DELETE:

@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+
 import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
 
@@ -16,6 +19,7 @@ import com.example.babysfirstphone.controllers.Contacts;
  */
 public class ContactDataActivity extends Activity {
 
+    String[] types = new String[]{"phone", "video", "app"};
     EditText editName, editNumber;
     ImageView contactImage;
     Button saveButton;
@@ -29,7 +33,11 @@ public class ContactDataActivity extends Activity {
         editName = (EditText) findViewById(R.id.editName);
         editNumber = (EditText) findViewById(R.id.editNumber);
         contactImage = (ImageView) findViewById(R.id.ContactImage);
+        Spinner contactType = findViewById(R.id.dropdown);
         saveButton = (Button) findViewById(R.id.save);
+
+        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, types);
+        contactType.setAdapter(dropdownAdapter);
 
         /*
             Here we set the Click listener on Image view. So that it select the profile pictures.
@@ -68,7 +76,9 @@ public class ContactDataActivity extends Activity {
                  */
                 Contacts contacts = new Contacts(editName.getText().toString(),
                         editNumber.getText().toString(),
-                        image);
+                        image,
+                        String.valueOf(contactType.getSelectedItem())
+                );
 
                 /*
                     When user click the SAVE button, the activity goes from here to
