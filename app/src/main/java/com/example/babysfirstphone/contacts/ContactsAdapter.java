@@ -64,14 +64,16 @@ public class ContactsAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        ImageView imgContact = (ImageView) view.findViewById(R.id.contactImage);
-        TextView contactName = (TextView) view.findViewById(R.id.contactName);
+        ImageView imgContact = view.findViewById(R.id.contactImage);
+        TextView contactName = view.findViewById(R.id.contactName);
 
         //Retrieve data.
         Contacts contacts = contact.get(position);
         imgContact.setImageResource(contacts.getImage());
-        contactName.setText(contacts.getName());
+        contactName.setText("\t".concat(contacts.getName()));
         System.getProperty("line.separator");
+
+        //Print into console.
         Log.e("name", contacts.getName() + " ");
         Log.e("phone", contacts.getNumber() + " ");
         Log.e("tag", contacts.getType() + " ");
