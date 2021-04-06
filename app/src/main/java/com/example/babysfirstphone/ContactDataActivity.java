@@ -3,6 +3,7 @@ package com.example.babysfirstphone;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,11 +31,11 @@ public class ContactDataActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_data);
 
-        editName = (EditText) findViewById(R.id.editName);
-        editNumber = (EditText) findViewById(R.id.editNumber);
-        contactImage = (ImageView) findViewById(R.id.ContactImage);
+        editName = findViewById(R.id.editName);
+        editNumber = findViewById(R.id.editNumber);
+        contactImage = findViewById(R.id.ContactImage);
         Spinner contactType = findViewById(R.id.dropdown);
-        saveButton = (Button) findViewById(R.id.save);
+        saveButton = findViewById(R.id.save);
 
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, types);
         contactType.setAdapter(dropdownAdapter);
@@ -62,6 +63,11 @@ public class ContactDataActivity extends Activity {
                 startActivityForResult(intent,1);
             }
         });
+
+        /*
+            Format the input number as a phone number.
+         */
+        editNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         /*
             Here we set the click listener on SAVE button.
