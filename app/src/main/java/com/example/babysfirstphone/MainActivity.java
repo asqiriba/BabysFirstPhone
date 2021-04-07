@@ -3,6 +3,8 @@ package com.example.babysfirstphone;
 import androidx.annotation.NonNull;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -126,12 +128,6 @@ public class MainActivity extends AppCompatActivity {
         getNum = sharedPreferences.getInt("color",0);
         mainScreen.setBackgroundResource(bgImages[getNum]);
 
-        // Requests permission to read texts
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
-        }
-
-
     }
 
     private void loadData() {
@@ -147,17 +143,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Read Texts Permission
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        if(requestCode == 1000){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
 
     // Top Menu for settings
     @Override
