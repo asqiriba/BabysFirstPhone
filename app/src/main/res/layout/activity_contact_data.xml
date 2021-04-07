@@ -39,7 +39,7 @@
         android:id="@+id/editNumber"
         android:inputType="phone"
         android:textSize="24sp"
-        android:hint="(000) 000-0000"
+        android:hint="1 (000) 000-0000"
         android:textColorHint="#A16AB6"
         android:layout_below="@+id/editName"
         android:layout_alignEnd="@+id/editName"
