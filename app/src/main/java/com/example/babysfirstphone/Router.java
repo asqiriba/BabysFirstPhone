@@ -154,7 +154,7 @@ public class Router extends AppCompatActivity {
             sendSMS(phoneNumber, message);
 
             // Wait 30 Seconds before going back
-            long maxCounter = 30000;
+            long maxCounter = 60000;
             long diff = 1000;
             new CountDownTimer(maxCounter , diff ) {
                 public void onTick(long millisUntilFinished) {
@@ -194,7 +194,7 @@ public class Router extends AppCompatActivity {
                 String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
 
                 // Only opens video chat if the recipient replies to text
-                if (videoCallRequest && body.equals("Y") && phoneNumber.equals(phoneNumberReceived)){
+                if (videoCallRequest && body.equals("Y") ){
                     // To display a Toast whenever there is an SMS.
                     Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
 
