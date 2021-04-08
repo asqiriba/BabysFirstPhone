@@ -23,6 +23,7 @@
         android:layout_width="294dp"
         android:layout_height="wrap_content"
         android:id="@+id/editName"
+        android:layout_marginTop="15dp"
         android:inputType="text"
         android:textSize="24sp"
         android:hint="Contact Name"
@@ -30,7 +31,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false" />
+        android:layout_below="@+id/ContactImage"
+        android:layout_alignParentLeft="false"/>
 
     <EditText
         android:layout_width="296dp"
