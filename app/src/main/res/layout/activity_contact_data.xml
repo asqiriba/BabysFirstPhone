@@ -50,7 +50,7 @@
         android:id="@+id/dropdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/editNumber"
+        android:layout_centerInParent="true"
         android:layout_below="@+id/editName"
         android:background="@drawable/spinnershape"
         android:textColor="#A16AB6"
