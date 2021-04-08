@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/editName"
+        android:layout_below="@+id/editNumber"
         android:background="@drawable/spinnershape"
         android:textColor="#A16AB6"
         android:layout_marginTop="20dp"
