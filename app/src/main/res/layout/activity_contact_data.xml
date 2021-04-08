@@ -52,7 +52,7 @@
         android:layout_below="@+id/editName"
         android:background="@drawable/spinnershape"
         android:textColor="#A16AB6"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:layoutDirection="rtl"
         android:ellipsize="end"
