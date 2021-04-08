@@ -239,11 +239,28 @@ public class Router extends AppCompatActivity {
         }
     }
 
-    private void sendSMS(String phoneNumber, String message){
+    private void sendSms(String phoneNumber, String message){
         System.out.println("SMS Sent");
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(phoneNumber,null,message, null, null);
         System.out.println("SMS Sent");
+    }
+
+    public void sendSMS(String phoneNumber, String message) {
+
+        // If permission is already given, connect a call.
+        try {
+            if (Build.VERSION.SDK_INT > 22) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) !=PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(Router.this, new String[]{
+                            Manifest.permission.SEND_SMS}, 123);
+                    return;
+                }
+            }
+            sendSms(phoneNumber, message);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
