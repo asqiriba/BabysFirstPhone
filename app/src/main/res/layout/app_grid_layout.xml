@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="115dp">
 
-
             <ImageView
                 android:id="@+id/imageViewApp"
                 android:layout_width="match_parent"
@@ -40,7 +39,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="#80000000"
                 tools:srcCompat="@drawable/img_avatar" />
 
             <RelativeLayout
