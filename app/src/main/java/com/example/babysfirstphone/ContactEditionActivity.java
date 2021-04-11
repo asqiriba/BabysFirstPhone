@@ -53,6 +53,7 @@ public class ContactEditionActivity extends Activity {
         editName.setText(name);
         editNumber.setText(number);
         contactType.setSelection(Arrays.asList(types).indexOf(type));
+        contactImage.setImageResource(img);
 
         /*
             Here we set the Click listener on Image view. So that it select the profile pictures.
