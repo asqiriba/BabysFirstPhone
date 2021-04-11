@@ -27,6 +27,9 @@ import android.widget.Toast;
 
 import android.os.Bundle;
 import android.view.View;
+
+import us.zoom.sdk.JoinMeetingOptions;
+import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingService;
 import us.zoom.sdk.StartMeetingOptions;
 import us.zoom.sdk.ZoomApiError;
@@ -125,6 +128,19 @@ public class Router extends AppCompatActivity {
         }
     }
 
+        /**
+     * Join a meeting without any login/authentication with the meeting's number & password
+     */
+    public void joinMeeting(Context context, String meetingNumber, String password) {
+        MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
+        JoinMeetingOptions options = new JoinMeetingOptions();
+        JoinMeetingParams params = new JoinMeetingParams();
+        params.displayName = ""; // TODO: Enter your name
+        params.meetingNo = meetingNumber;
+        params.password = password;
+        meetingService.joinMeetingWithParams(context, params, options);
+    }
+
 
     public void getData(){
         if(getIntent().getStringExtra("type").equals("phone")){
@@ -138,7 +154,7 @@ public class Router extends AppCompatActivity {
             sendSMS(phoneNumber, message);
 
             // Wait 30 Seconds before going back
-            long maxCounter = 30000;
+            long maxCounter = 60000;
             long diff = 1000;
             new CountDownTimer(maxCounter , diff ) {
                 public void onTick(long millisUntilFinished) {
@@ -178,23 +194,24 @@ public class Router extends AppCompatActivity {
                 String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
 
                 // Only opens video chat if the recipient replies to text
-                if (videoCallRequest && body.equals("Y") && phoneNumber.equals(phoneNumberReceived)){
+                if (videoCallRequest && body.equals("Y") ){
                     // To display a Toast whenever there is an SMS.
                     Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
 
-                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room.";
-                    String invitationLink = "https://us05web.zoom.us/j/2821683656?pwd=WndHdytYZXNaNkFma2p4R2hTR0ZvUT09";
-                    sendSMS(phoneNumber, joinMessage);
-                    sendSMS(phoneNumber, invitationLink);
-
                     if (ZoomSDK.getInstance().isLoggedIn()) {
-                        startMeeting(Router.this);
+//                        startMeeting(Router.this);
+                        joinMeeting(context, "2821683656", "ukH0rS");
                     } else {
                         String email = "babysfirstphone550@gmail.com";
                         String password = "CompSci550";
                         login(email, password);
-                        startMeeting(Router.this);
+//                        startMeeting(Router.this);
+                        joinMeeting(context, "2821683656", "ukH0rS");
                     }
+
+                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room. ";
+                    String invitationLink = "https://us05web.zoom.us/j/2821683656?pwd=WndHdytYZXNaNkFma2p4R2hTR0ZvUT09";
+                    sendSMS(phoneNumber, joinMessage + invitationLink);
                     videoCallRequest = false;
                     finish();
                 }
