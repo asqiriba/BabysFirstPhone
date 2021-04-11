@@ -176,9 +176,7 @@ public class SettingsInternal extends AppCompatActivity {
 
             editedContact.setName(contacts.getName());
             editedContact.setNumber(contacts.getNumber());
-
-            Log.e("onActivityResult", "c.getName() == " + contacts.getName());
-            Log.e("onActivityResult", "c.getNumber() == " + contacts.getNumber());
+            editedContact.setContactType(contacts.getType());
 
             arrayListContact.remove(index);
             arrayListContact.add(index, editedContact);
