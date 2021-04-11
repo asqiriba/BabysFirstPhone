@@ -42,6 +42,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps2"></activity>
+        <activity android:name=".ContactEditionActivity"></activity>
         <activity
             android:name=".Router"
             android:label="Router"
@@ -57,9 +58,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".MapsActivity1"
-            android:label="@string/title_activity_maps" />
         <activity android:name=".SettingsInternal" />
         <activity android:name=".MainActivity">
             <intent-filter>
