@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 
 import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
+
+import java.util.Arrays;
 
 /*
     In ContactDataActivity class, we take the inputs from user like Name, Number,
@@ -44,12 +47,12 @@ public class ContactEditionActivity extends Activity {
         Intent lastIntent = getIntent();
         String name = lastIntent.getStringExtra("name");
         String number = lastIntent.getStringExtra("number");
-//        String img = lastIntent.getStringExtra("image");
+        String type = lastIntent.getStringExtra("type");
+        int img = lastIntent.getIntExtra("image", 2131231006);
 
         editName.setText(name);
         editNumber.setText(number);
-//        image = Integer.parseInt(img);
-
+        contactType.setSelection(Arrays.asList(types).indexOf(type));
 
         /*
             Here we set the Click listener on Image view. So that it select the profile pictures.

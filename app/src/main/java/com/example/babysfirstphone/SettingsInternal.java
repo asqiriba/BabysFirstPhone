@@ -23,6 +23,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+///TODO: Known bug, if you close app after editing a contact the whole list may be deleted.
+///BUG: The app will crash if you select Edit and then hit Back button.
+
 public class SettingsInternal extends AppCompatActivity {
 
     ArrayList<Contacts> arrayListContact;
@@ -125,12 +128,16 @@ public class SettingsInternal extends AppCompatActivity {
                 editedContact = arrayListContact.get(index);
 
                 Log.e("onContextItemSelected", "index == " + index);
-                Log.e("onContextItemSelected", "editedContact == " + editedContact.getName());
+                Log.e("onContextItemSelected", "editedContactName == " + editedContact.getName());
+                Log.e("onContextItemSelected", "editedContactPlainNo == " + editedContact.getNumberFormat());
+                Log.e("onContextItemSelected", "editedContactImage == " + editedContact.getImage());
+                Log.e("onContextItemSelected", "editedContactType == " + editedContact.getType());
 
                 Intent intent = new Intent(this, ContactEditionActivity.class);
                 intent.putExtra("name", editedContact.getName());
-                intent.putExtra("number", editedContact.getNumber());
-//                intent.putExtra("image", String.valueOf(editedContact.getImage()));
+                intent.putExtra("number", editedContact.getNumberFormat());
+                intent.putExtra("image", editedContact.getImage()); //2131231006 || 2131231007
+                intent.putExtra("type", editedContact.getType());
                 startActivityForResult(intent, 2);
                 break;
 
@@ -168,12 +175,14 @@ public class SettingsInternal extends AppCompatActivity {
             contacts = (Contacts) data.getSerializableExtra("data");
 
             editedContact.setName(contacts.getName());
+            editedContact.setNumber(contacts.getNumber());
 
             Log.e("onActivityResult", "c.getName() == " + contacts.getName());
+            Log.e("onActivityResult", "c.getNumber() == " + contacts.getNumber());
 
             arrayListContact.remove(index);
             arrayListContact.add(index, editedContact);
-            deleteData();
+            deleteData(arrayListContact);
 
             contactAdapter.notifyDataSetChanged();
         }
