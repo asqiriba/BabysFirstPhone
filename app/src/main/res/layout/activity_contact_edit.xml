@@ -65,7 +65,7 @@
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         android:id="@+id/save"
-        android:text="Save"
+        android:text="Edit"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
