@@ -32,12 +32,19 @@ public class Contacts implements Serializable {
         return contactNumber.replaceAll(Constants.REGEX_CLEAN_PHONE_NO, "");
     }
 
+    public String getNumberFormat() { return contactNumber; }
+
     public void setNumber(String number) {
         this.contactNumber = number;
     }
 
     public int getImage() {
-        return contactImage;
+        if(contactImage != 0) {
+            return contactImage;
+        }
+        else {
+            return 2131231004;
+        }
     }
 
     public void setImageId(int imageId) {

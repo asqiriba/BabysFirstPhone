@@ -12,18 +12,18 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/ContactImage"
         android:layout_gravity="center_vertical"
         android:src="@drawable/feman_helper_icon"
         android:layout_alignParentTop="false"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/dropdown"/>
+        android:layout_centerHorizontal="true"/>
 
     <EditText
         android:layout_width="294dp"
         android:layout_height="wrap_content"
         android:id="@+id/editName"
+        android:layout_marginTop="15dp"
         android:inputType="text"
         android:textSize="24sp"
         android:hint="Contact Name"
@@ -31,7 +31,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false" />
+        android:layout_below="@+id/ContactImage"
+        android:layout_alignParentLeft="false"/>
 
     <EditText
         android:layout_width="296dp"
@@ -39,7 +40,7 @@
         android:id="@+id/editNumber"
         android:inputType="phone"
         android:textSize="24sp"
-        android:hint="(000) 000-0000"
+        android:hint="1 (000) 000-0000"
         android:textColorHint="#A16AB6"
         android:layout_below="@+id/editName"
         android:layout_alignEnd="@+id/editName"
@@ -49,11 +50,12 @@
         android:id="@+id/dropdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/editNumber"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/editNumber"
         android:background="@drawable/spinnershape"
         android:textColor="#A16AB6"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_marginVertical="10dp"
         android:layoutDirection="rtl"
         android:ellipsize="end"
         android:spinnerMode="dropdown"/>

@@ -57,8 +57,8 @@ public class SettingsFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String userNameInput = editTextSettings.getText().toString().trim();
-            buttonConfirm.setEnabled(!userNameInput.isEmpty());
+            String userNameInput = editTextSettings.getText().toString().trim().toLowerCase();
+            buttonConfirm.setEnabled(userNameInput.equals("settings"));
         }
 
         @Override

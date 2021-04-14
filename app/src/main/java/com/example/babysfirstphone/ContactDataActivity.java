@@ -70,7 +70,7 @@ public class ContactDataActivity extends Activity {
         editNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         /*
-            Here we set the click listener on SAVE button.
+            Here we set the click listener on SAVE.
          */
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

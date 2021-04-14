@@ -1,4 +1,6 @@
 # Baby's First Phone
+![enter image description here](https://img.shields.io/badge/dependencies-mobilertc%7Ccommonlib-brightgreen)
+
 CSUCI COMP-550 Spring 2021 project repo. Android app for those we care the most.
 
 <p align="center">

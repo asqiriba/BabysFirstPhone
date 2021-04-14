@@ -3,6 +3,8 @@ package com.example.babysfirstphone;
 import androidx.annotation.NonNull;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,10 +26,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.babysfirstphone.contacts.ContactData;
 import com.example.babysfirstphone.controllers.Contacts;
+import com.example.babysfirstphone.contacts.ContactData;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     List<Integer> images;
     List<String> info;
     Adapter adapter;
+    ArrayList<Contacts> arrayListContact;
 
     View mainScreen;
     ImageButton paintBtn;
@@ -69,45 +73,21 @@ public class MainActivity extends AppCompatActivity {
         images = new ArrayList<>();
         info = new ArrayList<>();
 
-        type.add("phone");
-        type.add("video");
-        type.add("website");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
-        type.add("placeholder");
+        // Obtains data saved in device
+        loadData();
 
-        images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
-        images.add(R.drawable.img_avatar);
-        images.add(R.drawable.img_avatar2);
-        images.add(R.drawable.image_avatar3);
-
-        info.add("1-760-123-4567");
-        info.add("1-760-840-1625");
-        info.add("3");
-        info.add("4");
-        info.add("5");
-        info.add("6");
-        info.add("7");
-        info.add("8");
-        info.add("9");
-        info.add("10");
-        info.add("11");
-        info.add("12");
-
+        // Only populates main view if there is any contacts stored
+        if (!arrayListContact.isEmpty()){
+            for(int i = 0; i < arrayListContact.size() ; i++){
+                type.add(arrayListContact.get(i).getType());
+            }
+            for(int i = 0; i < arrayListContact.size() ; i++){
+                images.add(arrayListContact.get(i).getImage());
+            }
+            for(int i = 0; i < arrayListContact.size() ; i++){
+                info.add(arrayListContact.get(i).getNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
+            }
+        }
 
 
         adapter = new Adapter(this, type, images, info);
@@ -117,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         dataList.setAdapter(adapter);
 
         // Top Menu
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Bottom Menu
@@ -150,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Requests permission to read texts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
+            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 123);
         }
 
 
@@ -167,6 +147,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("contact list", null);
+        Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
+        arrayListContact = gson.fromJson(json, type);
+
+        if (arrayListContact == null || arrayListContact.isEmpty()) {
+            arrayListContact = new ArrayList<Contacts>();
+        }
+    }
+
 
     // Top Menu for settings
     @Override

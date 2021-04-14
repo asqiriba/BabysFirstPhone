@@ -23,13 +23,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+///TODO: Known bug, if you close app after editing a contact the whole list may be deleted.
+///BUG: The app will crash if you select Edit and then hit Back button.
+
 public class SettingsInternal extends AppCompatActivity {
 
     ArrayList<Contacts> arrayListContact;
     ContactsAdapter contactAdapter;
-    Contacts contacts;
+    Contacts contacts, editedContact;
     Button contactAddButton;
     ListView listContacts;
+    int index = -1;
 
     final int CONTACT_VIEW = 1, CONTACT_DELETE = 2;
 
@@ -104,7 +108,7 @@ public class SettingsInternal extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         if (v.getId() == R.id.listView) {
-//            menu.add(0, CONTACT_VIEW, 1, "Save");
+            menu.add(0, CONTACT_VIEW, 1, "Edit");
             menu.add(0, CONTACT_DELETE, 2, "Delete");
         }
     }
@@ -117,17 +121,32 @@ public class SettingsInternal extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case CONTACT_VIEW:
+                Toast.makeText(SettingsInternal.this, "Edit", Toast.LENGTH_SHORT).show();
+                AdapterView.AdapterContextMenuInfo infoEdit = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                index = infoEdit.position;
+
+                editedContact = arrayListContact.get(index);
+
+                Log.e("onContextItemSelected", "index == " + index);
+                Log.e("onContextItemSelected", "editedContactName == " + editedContact.getName());
+                Log.e("onContextItemSelected", "editedContactPlainNo == " + editedContact.getNumberFormat());
+                Log.e("onContextItemSelected", "editedContactImage == " + editedContact.getImage());
+                Log.e("onContextItemSelected", "editedContactType == " + editedContact.getType());
+
+                Intent intent = new Intent(this, ContactEditionActivity.class);
+                intent.putExtra("name", editedContact.getName());
+                intent.putExtra("number", editedContact.getNumberFormat());
+                intent.putExtra("image", editedContact.getImage()); //2131231006 || 2131231007
+                intent.putExtra("type", editedContact.getType());
+                startActivityForResult(intent, 2);
                 break;
 
             case CONTACT_DELETE:
                 Toast.makeText(SettingsInternal.this, "Delete", Toast.LENGTH_SHORT).show();
                 AdapterView.AdapterContextMenuInfo infoDelete = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                int index = infoDelete.position;
+                int i = infoDelete.position;
 
-                Log.e("index", index + " ");
-                arrayListContact.remove(index);
-
-                //Rewrite the save file. may want to make this proc more efficient later.
+                arrayListContact.remove(i);
                 deleteData(arrayListContact);
 
                 contactAdapter.notifyDataSetChanged();
@@ -143,9 +162,26 @@ public class SettingsInternal extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == 2) {
+        Log.e("onActivityResult", "RequestCode == " + requestCode);
+        Log.e("onActivityResult", "ResultCode == " + resultCode);
+
+        if (resultCode == 2 && requestCode != 2) {
             contacts = (Contacts) data.getSerializableExtra("data");
             arrayListContact.add(contacts);
+            contactAdapter.notifyDataSetChanged();
+        }
+
+        if (requestCode == 2) {
+            contacts = (Contacts) data.getSerializableExtra("data");
+
+            editedContact.setName(contacts.getName());
+            editedContact.setNumber(contacts.getNumber());
+            editedContact.setContactType(contacts.getType());
+
+            arrayListContact.remove(index);
+            arrayListContact.add(index, editedContact);
+            deleteData(arrayListContact);
+
             contactAdapter.notifyDataSetChanged();
         }
     }
@@ -204,5 +240,12 @@ public class SettingsInternal extends AppCompatActivity {
         String json = gson.toJson(arrayListContact);
         editor.putString("contact list", json);
         editor.apply();
+    }
+
+    private void deleteData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
     }
 }

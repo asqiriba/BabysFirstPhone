@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/pink_background"
+    android:id="@+id/linearData"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/ContactImage"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/feman_helper_icon"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editName"
+        android:layout_marginTop="15dp"
+        android:inputType="text"
+        android:textSize="24sp"
+        android:hint="Contact Name"
+        android:textColorHint="#A16AB6"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/ContactImage"
+        android:layout_alignParentLeft="false"/>
+
+    <EditText
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNumber"
+        android:inputType="phone"
+        android:textSize="24sp"
+        android:hint="1 (000) 000-0000"
+        android:textColorHint="#A16AB6"
+        android:layout_below="@+id/editName"
+        android:layout_alignEnd="@+id/editName"
+        android:layout_alignRight="@+id/editName"/>
+
+    <Spinner
+        android:id="@+id/dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/editNumber"
+        android:background="@drawable/spinnershape"
+        android:textColor="#A16AB6"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layoutDirection="rtl"
+        android:ellipsize="end"
+        android:spinnerMode="dropdown"/>
+
+    <Button
+        android:background="@drawable/buttonshape"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:text="Save"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="86dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
+</RelativeLayout>
