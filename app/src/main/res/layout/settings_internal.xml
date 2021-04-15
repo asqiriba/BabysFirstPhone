@@ -30,7 +30,11 @@
         android:onClick="testContactActivity"
         android:text="Manage Contacts"/>
 
-
-
-
+    <Button
+        android:id="@+id/listButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Arrange Contact List"
+        android:layout_above="@id/contactButton"/>
 </RelativeLayout>

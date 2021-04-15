@@ -1,6 +1,11 @@
 package com.example.babysfirstphone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
+import com.example.babysfirstphone.contacts.RecyclerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -22,9 +28,7 @@ import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-
-///TODO: Known bug, if you close app after editing a contact the whole list may be deleted.
-///BUG: The app will crash if you select Edit and then hit Back button.
+import java.util.Collections;
 
 public class SettingsInternal extends AppCompatActivity {
 
@@ -57,6 +61,12 @@ public class SettingsInternal extends AppCompatActivity {
                 openContactCreation();
             }
         });
+
+        Button manageListButton = findViewById(R.id.listButton);
+        manageListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openContactList(); }
+        });
     }
 
     @Override
@@ -65,6 +75,9 @@ public class SettingsInternal extends AppCompatActivity {
         finish();
     }
 
+    /*
+        Contact Create, Edit and Deletion.
+     */
     public void  openContactCreation() {
         setContentView(R.layout.activity_internal_contact_create);
 
@@ -97,8 +110,45 @@ public class SettingsInternal extends AppCompatActivity {
                 registerForContextMenu(listContacts);
             }
         });
-
     }
+
+    /*
+        Contact sorting functionality.
+     */
+    public void  openContactList() {
+        setContentView(R.layout.activity_internal_contact_list);
+
+        loadData();
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(arrayListContact);
+        recyclerView.setAdapter(recyclerAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    /*
+        Handle list animation and sorting.
+     */
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP|ItemTouchHelper.DOWN|ItemTouchHelper.START|ItemTouchHelper.END, 0) {
+        @Override
+        public boolean onMove(
+                @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            int fromPosition = viewHolder.getAdapterPosition();
+            int toPosition = target.getAdapterPosition();
+            Collections.swap(arrayListContact, fromPosition, toPosition);
+
+            recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { }
+    };
 
     /*
         Menu render when long-press.
