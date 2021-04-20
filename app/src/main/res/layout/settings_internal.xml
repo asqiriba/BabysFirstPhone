@@ -30,6 +30,15 @@
         android:onClick="testContactActivity"
         android:text="Manage Contacts"/>
 
+    <Button
+        android:id="@+id/zoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/contactButton"
+        android:onClick="testContactActivity"
+        android:text="Zoom Account"/>
+
 
 
 

@@ -53,6 +53,14 @@ public class SettingsInternal extends AppCompatActivity {
                 openContactCreation();
             }
         });
+
+        Button zoomAccountButton = findViewById(R.id.zoomButton);
+        zoomAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), ZoomLogIn.class));
+            }
+        });
     }
 
     @Override
