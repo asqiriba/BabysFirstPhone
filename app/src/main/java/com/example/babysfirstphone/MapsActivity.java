@@ -4,12 +4,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,16 +24,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import us.zoom.sdk.ZoomSDK;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-    private final long MIN_TIME = 1000;
-    private final long MIN_DIST = 5;
+    private final long MIN_TIME = 180000; // get gps location every 3 min
+    private final long MIN_DIST = 100;  // set the distance value to be 100 meters
 
     private LatLng latLng;
+    private BroadcastReceiver mIntentReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
+     * we just add a marker near San Jose, California.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
@@ -118,5 +126,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         catch (SecurityException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
+        mIntentReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String msg = intent.getStringExtra("get_msg");
+
+                //Process the sms format and extract body &amp; phoneNumber
+                msg = msg.replace("\n", "");
+                String body = msg.substring(msg.lastIndexOf(":")+1, msg.length());
+                String phoneNumberReceived = msg.substring(0,msg.lastIndexOf(":"));
+                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
+
+                // Only opens video chat if the recipient replies to text
+                if (phoneNumberReceived.equals("9063701986") && body.equals("stop") ){
+                    // To display a Toast whenever there is an SMS.
+                    Toast.makeText(context, "Stop GPS!", Toast.LENGTH_LONG).show();
+                    finish();
+
+                }
+            }
+        };
+
+        this.registerReceiver(mIntentReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.unregisterReceiver(this.mIntentReceiver);
     }
 }
