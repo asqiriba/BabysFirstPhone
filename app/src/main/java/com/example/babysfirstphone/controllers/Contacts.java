@@ -32,6 +32,8 @@ public class Contacts implements Serializable {
         return contactNumber.replaceAll(Constants.REGEX_CLEAN_PHONE_NO, "");
     }
 
+    public String getNumberFormat() { return contactNumber; }
+
     public void setNumber(String number) {
         this.contactNumber = number;
     }
@@ -41,7 +43,7 @@ public class Contacts implements Serializable {
             return contactImage;
         }
         else {
-            return 2131231004;
+            return Constants.DEFAULT_IMG;
         }
     }
 

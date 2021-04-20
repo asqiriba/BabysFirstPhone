@@ -30,9 +30,7 @@ public class ContactsAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return contact.size();
-    }
+    public int getCount() { return contact.size(); }
 
     @Override
     public Object getItem(int position) {
@@ -74,10 +72,10 @@ public class ContactsAdapter extends BaseAdapter {
         System.getProperty("line.separator");
 
         //Print into console.
-        Log.e("name", contacts.getName() + " ");
-        Log.e("phone", contacts.getNumber() + " ");
-        Log.e("tag", contacts.getType() + " ");
-        Log.e("img", contacts.getImage() + " ");
+//        Log.e("ContactsAdapter.getView", contacts.getName() + " ");
+//        Log.e("ContactsAdapter.getView", contacts.getNumber() + " ");
+//        Log.e("ContactsAdapter.getView", contacts.getType() + " ");
+//        Log.e("ContactsAdapter.getView", contacts.getImage() + " ");
 
         return view;
     }
