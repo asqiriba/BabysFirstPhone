@@ -25,7 +25,7 @@
         android:label="BFP"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar">
+        android:theme="@style/Theme.BabysFirstPhone.NoActionBar">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
