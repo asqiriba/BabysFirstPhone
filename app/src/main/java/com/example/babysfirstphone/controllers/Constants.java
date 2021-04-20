@@ -19,6 +19,8 @@ public class Constants {
 
     public static final String REGEX_CLEAN_PHONE_NO = "(?<!^\\s)\\+|[^\\d+]+";
 
+    public static final int DEFAULT_IMG = 2131231008;
+
     /**
      * Getters
      */

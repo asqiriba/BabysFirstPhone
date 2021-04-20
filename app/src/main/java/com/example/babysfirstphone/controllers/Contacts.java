@@ -43,7 +43,7 @@ public class Contacts implements Serializable {
             return contactImage;
         }
         else {
-            return 2131231004;
+            return Constants.DEFAULT_IMG;
         }
     }
 
