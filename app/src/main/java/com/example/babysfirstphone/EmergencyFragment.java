@@ -1,7 +1,9 @@
 package com.example.babysfirstphone;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ public class EmergencyFragment extends Fragment {
     int[] images;
     int getNum;
     View emergencyScreen;
+
 
     @Nullable
     @Override
@@ -80,4 +83,6 @@ public class EmergencyFragment extends Fragment {
 
 
     }
+
+
 }

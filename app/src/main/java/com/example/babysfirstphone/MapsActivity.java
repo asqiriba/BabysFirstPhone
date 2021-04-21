@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -26,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import us.zoom.sdk.ZoomSDK;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity<mIntentReceiver> extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -37,13 +38,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private LatLng latLng;
     private BroadcastReceiver mIntentReceiver;
+    SupportMapFragment mapFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -128,37 +131,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
     public void onResume() {
         super.onResume();
+        mapFragment.onResume();
+
 
         IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
         mIntentReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+
                 String msg = intent.getStringExtra("get_msg");
+//            String msg = intent.getStringExtra().getString("get_msg");
 
                 //Process the sms format and extract body &amp; phoneNumber
                 msg = msg.replace("\n", "");
                 String body = msg.substring(msg.lastIndexOf(":")+1, msg.length());
                 String phoneNumberReceived = msg.substring(0,msg.lastIndexOf(":"));
-                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
+//                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
 
-                // Only opens video chat if the recipient replies to text
-                if (phoneNumberReceived.equals("9063701986") && body.equals("stop") ){
-                    // To display a Toast whenever there is an SMS.
-                    Toast.makeText(context, "Stop GPS!", Toast.LENGTH_LONG).show();
+
+                if ( phoneNumberReceived.equals("9063701986") && body.equals("stop") ){
                     finish();
 
                 }
             }
         };
-
         this.registerReceiver(mIntentReceiver, intentFilter);
     }
-
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         this.unregisterReceiver(this.mIntentReceiver);
     }
+
+
 }
