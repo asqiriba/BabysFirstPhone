@@ -136,7 +136,6 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
         super.onResume();
         mapFragment.onResume();
 
-
         IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
         mIntentReceiver = new BroadcastReceiver() {
             @Override
@@ -163,6 +162,7 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
     @Override
     public void onPause() {
         super.onPause();
+        mapFragment.onPause();
         this.unregisterReceiver(this.mIntentReceiver);
     }
 
