@@ -236,6 +236,7 @@ public class SettingsInternal extends AppCompatActivity {
             editedContact.setName(contacts.getName());
             editedContact.setNumber(contacts.getNumber());
             editedContact.setContactType(contacts.getType());
+            editedContact.setImageId(contacts.getImage());
 
             arrayListContact.remove(index);
             arrayListContact.add(index, editedContact);
