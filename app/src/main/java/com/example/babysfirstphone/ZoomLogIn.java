@@ -80,6 +80,9 @@ public class ZoomLogIn extends AppCompatActivity {
         emailText.addTextChangedListener(loginTextWatcher);
         passwordText.addTextChangedListener(loginTextWatcher);
 
+        // Checks if user is logged in
+        logoutConfirm.setEnabled(ZoomSDK.getInstance().isLoggedIn());
+
 
         // Lets you into internal settings
         loginConfirm.setOnClickListener(new View.OnClickListener() {
