@@ -62,6 +62,14 @@ public class SettingsInternal extends AppCompatActivity {
             }
         });
 
+        Button zoomAccountButton = findViewById(R.id.zoomButton);
+        zoomAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), ZoomLogIn.class));
+            }
+        });
+
         Button manageListButton = findViewById(R.id.listButton);
         manageListButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,7 +214,8 @@ public class SettingsInternal extends AppCompatActivity {
     }
 
     /*
-        We receive the data coming from ContactDataActivity.
+        We receive the data coming from ContactDataActivity. This is what the method do with
+        the data that comes from both the Adapters.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -235,6 +244,7 @@ public class SettingsInternal extends AppCompatActivity {
             contactAdapter.notifyDataSetChanged();
         }
     }
+
     /** Called when the user taps the helper button */
     public void testContactActivity(View view) {
         Intent intent = new Intent(getBaseContext(), ContactDataActivity.class);
@@ -262,7 +272,6 @@ public class SettingsInternal extends AppCompatActivity {
         loadData();
 
      */
-
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
 

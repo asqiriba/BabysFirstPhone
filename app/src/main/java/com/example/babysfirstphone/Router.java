@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -30,7 +31,9 @@ import android.view.View;
 
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
+import us.zoom.sdk.MeetingItem;
 import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.MeetingStatus;
 import us.zoom.sdk.StartMeetingOptions;
 import us.zoom.sdk.ZoomApiError;
 import us.zoom.sdk.ZoomAuthenticationError;
@@ -73,8 +76,9 @@ public class Router extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_router);
-        getData();
         initializeSdk(this);
+        getData();
+
 
     }
 
@@ -199,20 +203,81 @@ public class Router extends AppCompatActivity {
                     Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
 
                     if (ZoomSDK.getInstance().isLoggedIn()) {
-//                        startMeeting(Router.this);
-                        joinMeeting(context, "2821683656", "ukH0rS");
-                    } else {
-                        String email = "babysfirstphone550@gmail.com";
-                        String password = "CompSci550";
-                        login(email, password);
-//                        startMeeting(Router.this);
-                        joinMeeting(context, "2821683656", "ukH0rS");
-                    }
+                        startMeeting(Router.this);
 
-                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room. ";
-                    String invitationLink = "https://us05web.zoom.us/j/2821683656?pwd=WndHdytYZXNaNkFma2p4R2hTR0ZvUT09";
-                    sendSMS(phoneNumber, joinMessage + invitationLink);
-                    videoCallRequest = false;
+                        // Wait 3 Seconds before obtaining meeting URL
+                        long maxCounter = 3000;
+                        long diff = 1000;
+                        new CountDownTimer(maxCounter , diff ) {
+                            public void onTick(long millisUntilFinished) {
+                                long diff = maxCounter - millisUntilFinished;
+                                long time = diff  / 1000;
+                                //here you can have your logic to set text to edittext
+                            }
+                            public void onFinish() {
+                                String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
+                                if (meetingURL == null){
+                                    // Try to get meeting URL again
+                                    long maxCounter = 3000;
+                                    long diff = 1000;
+                                    new CountDownTimer(maxCounter , diff ) {
+                                        public void onTick(long millisUntilFinished) { }
+                                        public void onFinish() {
+                                            String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
+                                            String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                            sendSMS(phoneNumber, joinMessage + meetingURL);
+                                            videoCallRequest = false;
+                                        }
+                                    }.start();
+                                }else{
+                                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                    sendSMS(phoneNumber, joinMessage + meetingURL);
+                                    videoCallRequest = false;
+                                }
+
+                            }
+                        }.start();
+                    } else {
+//                        String email = "babysfirstphone550@gmail.com";
+//                        String password = "CompSci550";
+                        SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
+                        String email = sharedPreferences.getString("userName", "defaultValue");
+                        String password = sharedPreferences.getString("password", "defaultValue");
+                        login(email, password);
+                        startMeeting(Router.this);
+
+                        // Wait 3 Seconds before obtaining meeting URL
+                        long maxCounter = 3000;
+                        long diff = 1000;
+                        new CountDownTimer(maxCounter , diff ) {
+                            public void onTick(long millisUntilFinished) {
+                                long diff = maxCounter - millisUntilFinished;
+                                long time = diff  / 1000;
+                                //here you can have your logic to set text to edittext
+                            }
+                            public void onFinish() {
+                                String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
+                                if (meetingURL == null){
+                                    // Try to get meeting URL again
+                                    long maxCounter = 3000;
+                                    long diff = 1000;
+                                    new CountDownTimer(maxCounter , diff ) {
+                                        public void onTick(long millisUntilFinished) { }
+                                        public void onFinish() {
+                                            String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
+                                            String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                            sendSMS(phoneNumber, joinMessage + meetingURL);
+                                            videoCallRequest = false;
+                                        }
+                                    }.start();
+                                }else{
+                                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                    sendSMS(phoneNumber, joinMessage + meetingURL);
+                                    videoCallRequest = false;
+                                }
+                            }
+                        }.start();
+                    }
                     finish();
                 }
             }

@@ -19,11 +19,9 @@ public class Images extends Activity {
     /*
         Here we created the array of mock images.
      */
-    private int [] arrayOfImages =
-    {       R.drawable.img_avatar,R.drawable.img_avatar2,R.drawable.image_avatar3,R.drawable.image_avatar4,
-            R.drawable.img_avatar,R.drawable.img_avatar2,R.drawable.image_avatar3,R.drawable.image_avatar4,
-            R.drawable.img_avatar,R.drawable.img_avatar2,R.drawable.image_avatar3,R.drawable.image_avatar4,
-            R.drawable.img_avatar,R.drawable.img_avatar2,R.drawable.image_avatar3,R.drawable.image_avatar4, 7
+    private final int [] arrayOfImages =
+    {       R.drawable.img_avatar, R.drawable.img_avatar2, R.drawable.img_avatar3, R.drawable.img_avatar4,
+            R.drawable.img_avatar5, R.drawable.img_avatar6, R.drawable.img_avatar7, R.drawable.img_avatar8
     };
 
     /*
@@ -37,7 +35,7 @@ public class Images extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images);
 
-        gridView = (GridView)findViewById(R.id.gridview);
+        gridView = findViewById(R.id.gridview);
 
         /*
             Called the parameterized constructor of AdapterImages class.
