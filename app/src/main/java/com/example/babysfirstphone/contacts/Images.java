@@ -21,7 +21,8 @@ public class Images extends Activity {
      */
     private final int [] arrayOfImages =
     {       R.drawable.img_avatar, R.drawable.img_avatar2, R.drawable.img_avatar3, R.drawable.img_avatar4,
-            R.drawable.img_avatar5, R.drawable.img_avatar6, R.drawable.img_avatar7, R.drawable.img_avatar8
+            R.drawable.img_avatar5, R.drawable.img_avatar6, R.drawable.img_avatar7, R.drawable.img_avatar8,
+            R.drawable.youtube_thumb
     };
 
     /*

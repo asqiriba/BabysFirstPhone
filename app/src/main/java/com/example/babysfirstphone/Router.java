@@ -152,32 +152,45 @@ public class Router extends AppCompatActivity {
             finish();
         }
         else if(getIntent().getStringExtra("type").equals("video")){
-            videoCallRequest = true;
-            String phoneNumber = getIntent().getStringExtra("info");
-            String message = "User would like you to join a video call. Reply with Y to accept.";
-            sendSMS(phoneNumber, message);
 
-            // Wait 30 Seconds before going back
-            long maxCounter = 60000;
-            long diff = 1000;
-            new CountDownTimer(maxCounter , diff ) {
-                public void onTick(long millisUntilFinished) {
-                    long diff = maxCounter - millisUntilFinished;
-                    long time = diff  / 1000;
-                    //here you can have your logic to set text to edittext
-                }
-                public void onFinish() {
-                    if (videoCallRequest){
-                        videoCallRequest = false;
-                        finish();
+            if(ZoomSDK.getInstance().isLoggedIn()){
+                videoCallRequest = true;
+                String phoneNumber = getIntent().getStringExtra("info");
+                String message = "User would like you to join a video call. Reply with Y to accept.";
+                sendSMS(phoneNumber, message);
+
+                // Wait 30 Seconds before going back
+                long maxCounter = 60000;
+                long diff = 1000;
+                new CountDownTimer(maxCounter , diff ) {
+                    public void onTick(long millisUntilFinished) {
+                        long diff = maxCounter - millisUntilFinished;
+                        long time = diff  / 1000;
+                        //here you can have your logic to set text to edittext
                     }
-                }
-            }.start();
+                    public void onFinish() {
+                        if (videoCallRequest){
+                            videoCallRequest = false;
+                            finish();
+                        }
+                    }
+                }.start();
+            }else{
+
+                Toast.makeText(this, "Please sign in to your Zoom account.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
+            }
+
         }
         else{
-            Toast.makeText(this, getIntent().getStringExtra("type"), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
+            if (launchIntent != null) {
+                startActivity(launchIntent);
+                finish();
+            } else {
+                Toast.makeText(Router.this, "There is no package available in android", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
