@@ -233,6 +233,7 @@ public class SettingsInternal extends AppCompatActivity {
         if (requestCode == 2) {
             contacts = (Contacts) data.getSerializableExtra("data");
 
+//            assert contacts != null;
             editedContact.setName(contacts.getName());
             editedContact.setNumber(contacts.getNumber());
             editedContact.setContactType(contacts.getType());
