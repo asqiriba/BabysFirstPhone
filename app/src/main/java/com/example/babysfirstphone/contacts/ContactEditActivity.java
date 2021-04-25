@@ -3,7 +3,6 @@ package com.example.babysfirstphone.contacts;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -95,7 +94,7 @@ public class ContactEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ContactEditionActivity.class);
                 intent.putExtra("name", editedContact.getName());
                 intent.putExtra("number", editedContact.getNumberFormat());
-                intent.putExtra("image", editedContact.getImage()); //2131231006 || 2131231007
+                intent.putExtra("image", editedContact.getImage());
                 intent.putExtra("type", editedContact.getType());
                 startActivityForResult(intent, 2);
                 break;
@@ -122,8 +121,8 @@ public class ContactEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.e("onActivityResult", "RequestCode == " + requestCode);
-        Log.e("onActivityResult", "ResultCode == " + resultCode);
+//        Log.e("onActivityResult", "RequestCode == " + requestCode);
+//        Log.e("onActivityResult", "ResultCode == " + resultCode);
 
         if (resultCode == 0) {
             loadData();

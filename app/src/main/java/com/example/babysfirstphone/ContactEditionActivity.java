@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,7 +12,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.babysfirstphone.contacts.ContactEditActivity;
 import com.example.babysfirstphone.contacts.Images;
+import com.example.babysfirstphone.controllers.Constants;
 import com.example.babysfirstphone.controllers.Contacts;
 
 import java.util.Arrays;
@@ -47,7 +50,7 @@ public class ContactEditionActivity extends Activity {
         String name = lastIntent.getStringExtra("name");
         String number = lastIntent.getStringExtra("number");
         String type = lastIntent.getStringExtra("type");
-        int img = lastIntent.getIntExtra("image", 2131231006);
+        int img = lastIntent.getIntExtra("image", Constants.DEFAULT_IMG);
 
         editName.setText(name);
         editNumber.setText(number);
@@ -95,7 +98,7 @@ public class ContactEditionActivity extends Activity {
                  */
                 Contacts contacts = new Contacts(editName.getText().toString(),
                         editNumber.getText().toString(),
-                        image,
+                        img,
                         String.valueOf(contactType.getSelectedItem())
                 );
 
@@ -103,7 +106,7 @@ public class ContactEditionActivity extends Activity {
                     When user click the SAVE button, the activity goes from here to
                     SettingsInternal.java file. We might want to change this.
                  */
-                Intent intent = new Intent(ContactEditionActivity.this, SettingsInternal.class);
+                Intent intent = new Intent(ContactEditionActivity.this, ContactEditActivity.class);
 
                 /*
                     We can’t send the Object of a class using Intent without implementing
