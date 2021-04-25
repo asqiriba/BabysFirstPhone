@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.babysfirstphone.ContactDataActivity;
-import com.example.babysfirstphone.contacts.ContactListEditActivity;
 import com.example.babysfirstphone.ContactEditionActivity;
 import com.example.babysfirstphone.R;
 import com.example.babysfirstphone.controllers.Contacts;
@@ -190,7 +189,7 @@ public class ContactEditActivity extends AppCompatActivity {
         arrayListContact = gson.fromJson(json, type);
 
         if (arrayListContact == null || arrayListContact.isEmpty()) {
-            arrayListContact = new ArrayList<Contacts>();
+            arrayListContact = new ArrayList<>();
         }
     }
 
@@ -208,12 +207,5 @@ public class ContactEditActivity extends AppCompatActivity {
         String json = gson.toJson(arrayListContact);
         editor.putString("contact list", json);
         editor.apply();
-    }
-
-    private void deleteData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear().apply();
     }
 }
