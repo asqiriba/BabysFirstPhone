@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.babysfirstphone.contacts.ContactEditActivity;
 import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
 
@@ -89,7 +90,7 @@ public class ContactDataActivity extends Activity {
                     When user click the SAVE button, the activity goes from here to
                     SettingsInternal.java file. We might want to change this.
                  */
-                Intent intent = new Intent(ContactDataActivity.this, SettingsInternal.class);
+                Intent intent = new Intent(ContactDataActivity.this, ContactEditActivity.class);
 
                 /*
                     We can’t send the Object of a class using Intent without implementing
