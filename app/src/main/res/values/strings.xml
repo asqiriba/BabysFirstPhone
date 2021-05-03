@@ -15,4 +15,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_zoom_log_in">ZoomLogIn</string>
+    <string name="title_activity_emergency_contacts">EmergencyContacts</string>
+    <string-array name="emergency_arrays">
+        <item>Mom</item>
+        <item>Dad</item>
+    </string-array>
 </resources>

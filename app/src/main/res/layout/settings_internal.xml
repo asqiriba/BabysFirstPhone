@@ -34,7 +34,15 @@
         android:text="Zoom Account"/>
 
 
-
+    <Button
+        android:id="@+id/emergencyButton"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/zoomButton"
+        android:onClick="testContactActivity"
+        android:text="Emergency Contacts" />
 
     <Button
         android:id="@+id/listButton"

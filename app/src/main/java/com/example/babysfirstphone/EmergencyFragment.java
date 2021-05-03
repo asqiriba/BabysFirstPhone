@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class EmergencyFragment extends Fragment {
     ImageButton momBtn;
     ImageButton mapBtn;
 
+
     Caller caller = new Caller();
     Constants constants = new Constants();
     int[] images;
@@ -40,7 +42,8 @@ public class EmergencyFragment extends Fragment {
         dadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(caller.makeCall(constants.getEMERGENCY_NO1()));
+                emergencyCall("Dad");
+//                startActivity(caller.makeCall(constants.getEMERGENCY_NO1()));
             }
         });
 
@@ -80,6 +83,16 @@ public class EmergencyFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("colorTheme", Context.MODE_PRIVATE);
         getNum = sharedPreferences.getInt("color",0);
         emergencyScreen.setBackgroundResource(images[getNum]);
+
+
+    }
+
+    public void emergencyCall(String contactType) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("EmergencyContacts", Context.MODE_PRIVATE);
+        String phoneNumber = sharedPreferences.getString(contactType,"805");
+        System.out.print(phoneNumber);
+        constants.setEMERGENCY_NO1(phoneNumber);
+        startActivity(caller.makeCall(constants.getEMERGENCY_NO1()));
 
 
     }

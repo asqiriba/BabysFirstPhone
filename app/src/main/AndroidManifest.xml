@@ -26,9 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabysFirstPhone.NoActionBar">
         <activity
+            android:name=".EmergencyContacts"
+            android:label="@string/title_activity_emergency_contacts"
+            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar"></activity>
+        <activity
             android:name=".ZoomLogIn"
             android:label="@string/title_activity_zoom_log_in"
-            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar"></activity>
+            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -44,7 +48,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps2" />
-        <activity android:name=".ContactEditionActivity"/>
+        <activity android:name=".ContactEditionActivity" />
         <activity
             android:name=".Router"
             android:label="Router"

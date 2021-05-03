@@ -70,6 +70,14 @@ public class SettingsInternal extends AppCompatActivity {
             }
         });
 
+        Button emergencyContacts = findViewById(R.id.emergencyButton);
+        emergencyContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), EmergencyContacts.class));
+            }
+        });
+
         Button manageListButton = findViewById(R.id.listButton);
         manageListButton.setOnClickListener(new View.OnClickListener() {
             @Override
