@@ -88,7 +88,7 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
                     //set up the number you want to send the gps information
-                    String phoneNumber = "906-370-1986";
+                    String phoneNumber = "650-555-1212";
                     String myLatitude = String.valueOf(location.getLatitude());
                     String myLongitude = String.valueOf(location.getLongitude());
                     //create the text message
@@ -151,7 +151,7 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
 //                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
 
 
-                if ( phoneNumberReceived.equals("9063701986") && body.equals("stop") ){
+                if ( phoneNumberReceived.equals("6505551212") && body.equals("stop") ){
                     finish();
 
                 }
