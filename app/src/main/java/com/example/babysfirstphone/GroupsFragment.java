@@ -142,7 +142,7 @@ public class GroupsFragment extends Fragment {
                         smsManager.sendTextMessage(number,null,message, null, null);
                     }
                     // Wait 60 Seconds before obtaining meeting URL
-                    long maxCounter = 10000;
+                    long maxCounter = 60000;
                     long diff = 1000;
                     new CountDownTimer(maxCounter , diff ) {
                         public void onTick(long millisUntilFinished) {
