@@ -29,6 +29,7 @@ public class EmergencyContacts extends AppCompatActivity {
     Button saveButton;
     FloatingActionButton fab;
 
+    ImageView contactImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,10 @@ public class EmergencyContacts extends AppCompatActivity {
         setContentView(R.layout.activity_emergency_contacts);
         editNumber = findViewById(R.id.editNumber);
 
-
         Spinner contact_spinner = findViewById(R.id.spinner);
         saveButton = findViewById(R.id.save);
+        contactImage = findViewById(R.id.ContactImage);
+        editNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         /*
             Here we set the click listener on SAVE.
@@ -72,8 +74,36 @@ public class EmergencyContacts extends AppCompatActivity {
             }
         });
 
+        contactImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                /*
+                    After clicking on image the User is to move to controllers/Images Activity
+                    page where user select the profile picture of contact.
+                 */
+                Intent intent = new Intent(EmergencyContacts.this, Images.class);
 
+                /*
+                    Here we used startActivityForResult() as we expecting some data back from Images
+                     Activity which is contact image selected by user.
 
+                     The contact image we get from Images activity, we extract it using code
+  >>>                  Line 97-100.
+                 */
+                startActivityForResult(intent,1);
+            }
+        });
+    }
+
+    /*
+        Here we get the Image which is send from Images class. We also set the contact image.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        int image = data.getExtras().getInt("img", 1);
+        contactImage.setImageResource(image);
     }
 }
