@@ -27,9 +27,8 @@ public class EmergencyContacts extends AppCompatActivity {
     EditText editNumber;
     String number, contactType;
     Button saveButton;
-    private int image;
     FloatingActionButton fab;
-//    Constants constants = new Constants();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +41,11 @@ public class EmergencyContacts extends AppCompatActivity {
         saveButton = findViewById(R.id.save);
 
         /*
-            Format the input number as a phone number.
-         */
-
-
-        /*
             Here we set the click listener on SAVE.
          */
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(contactType.equals("Dad")) {
-//                    constants.setEMERGENCY_NO1(number);
-//                }
-//                else {
-//                    constants.setEMERGENCY_NO2(number);
-//
-//                }
 
                 // Stores contact type and his/her phone number
                 number = editNumber.getText().toString();
@@ -67,10 +54,9 @@ public class EmergencyContacts extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("EmergencyContacts", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(contactType, number);
-                editor.commit();
+                editor.apply();
                 Toast.makeText(EmergencyContacts.this,
-                        "OnClickListener : " +
-                                "\nSpinner 1 : "+ contactType + number,
+                        "Update Contact info : " + contactType + " : " + number,
                         Toast.LENGTH_SHORT).show();
 
 //                finish();
