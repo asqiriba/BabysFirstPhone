@@ -25,6 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BabysFirstPhone.NoActionBar">
+        <activity android:name=".contacts.ContactListEditActivity"></activity>
         <activity
             android:name=".EmergencyContacts"
             android:label="@string/title_activity_emergency_contacts"
@@ -48,6 +49,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps2" />
+
         <activity android:name=".ContactEditionActivity" />
         <activity
             android:name=".Router"
@@ -56,6 +58,7 @@
             android:theme="@style/Theme.BabysFirstPhone.NoActionBar" />
         <activity android:name=".contacts.Images" />
         <activity android:name=".ContactDataActivity" />
+        <activity android:name=".SettingsInternal" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -64,7 +67,7 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".SettingsInternal" />
+        <activity android:name=".contacts.ContactEditActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,6 +75,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <receiver android:name=".ReceiveSms">
             <intent-filter>
@@ -79,5 +85,17 @@
             </intent-filter>
         </receiver>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
 </manifest>

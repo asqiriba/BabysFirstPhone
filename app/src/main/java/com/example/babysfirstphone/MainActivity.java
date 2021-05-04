@@ -89,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
         adapter = new Adapter(this, type, images, info);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         dataList.setLayoutManager(gridLayoutManager);
         dataList.setAdapter(adapter);
@@ -118,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
 
         // Set up paint buttons to change the background colors
         bgImages = new int[] {R.drawable.green_background, R.drawable.red_background,R.drawable.pink_background, R.drawable.purple_background, R.drawable.blue_background, R.drawable.yellow_background  };

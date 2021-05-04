@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_purple">
 
     <ListView
@@ -19,14 +18,36 @@
         android:layout_above="@+id/bottom_navigation"
         android:layout_marginBottom="-7dp">
 
-        <Button
-            android:layout_width="match_parent"
+        <TableRow
+            android:id="@+id/table_row"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginTop="15dp" >
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Add Contacts"
             android:id="@+id/contactAddButton"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:textStyle="bold"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Arrange List"
+            android:id="@+id/listEditButton"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+        </TableRow>
     </FrameLayout>
 </RelativeLayout>
