@@ -2,6 +2,7 @@ package com.example.babysfirstphone;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.Spinner;
 import com.example.babysfirstphone.contacts.ContactEditActivity;
 import com.example.babysfirstphone.contacts.Images;
 import com.example.babysfirstphone.controllers.Contacts;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 /*
     In ContactDataActivity class, we take the inputs from user like Name, Number,
@@ -26,6 +30,7 @@ public class ContactDataActivity extends Activity {
     ImageView contactImage;
     Button saveButton;
     private int image;
+    private ArrayList<Contacts> arrayListContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +107,6 @@ public class ContactDataActivity extends Activity {
                     Here we set the result code as 2, and second argument as intent Object.
                  */
                 setResult(2, intent);
-
                 finish();
             }
         });

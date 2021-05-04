@@ -54,8 +54,11 @@ public class ContactEditActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
 
-        contactListArrange.setOnClickListener(view -> startActivity(new Intent(view.getContext(),
-                ContactListEditActivity.class)));
+        contactListArrange.setOnClickListener(view -> {
+            saveData(arrayListContact);
+            startActivity(new Intent(view.getContext(),
+                    ContactListEditActivity.class));
+        });
 
         // Here we called the constructor of ContactsAdpater class, in  which we passed the context and ArrayList.
         contactAdapter = new ContactsAdapter(ContactEditActivity.this, arrayListContact);
