@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.widget.Toast;
 
+import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +26,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import us.zoom.sdk.ZoomSDK;
 
@@ -39,6 +46,8 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
     private LatLng latLng;
     private BroadcastReceiver mIntentReceiver;
     SupportMapFragment mapFragment;
+    String dadsNumber = "0";
+    String momsNumber = "0";
 
 
     @Override
@@ -77,6 +86,10 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
         mMap.addMarker(new MarkerOptions().position(home).title("Home"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
 
+        // Obtains Parents Numbers
+        loadParentsData();
+        System.out.println(momsNumber);
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -87,16 +100,20 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
+
                     //set up the number you want to send the gps information
-                    String phoneNumber = "650-555-1212";
+//                    String phoneNumber = "650-555-1212";
                     String myLatitude = String.valueOf(location.getLatitude());
                     String myLongitude = String.valueOf(location.getLongitude());
                     //create the text message
                     String message = "http://maps.google.com/maps?q=" + myLatitude + "," + myLongitude + "&iwloc=A";
 
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNumber,null,message, null, null);
 
+                    String[] numbers = {dadsNumber, momsNumber};
+                    for(String number : numbers) {
+                        smsManager.sendTextMessage(number, null, message, null, null);
+                    }
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -146,14 +163,15 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
 
                 //Process the sms format and extract body &amp; phoneNumber
                 msg = msg.replace("\n", "");
-                String body = msg.substring(msg.lastIndexOf(":")+1, msg.length());
+                String body = msg.substring(msg.lastIndexOf(":")+1, msg.length()).toLowerCase();
                 String phoneNumberReceived = msg.substring(0,msg.lastIndexOf(":"));
 //                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
 
 
-                if ( phoneNumberReceived.equals("6505551212") && body.equals("stop") ){
-                    finish();
-
+                if ( phoneNumberReceived.equals(dadsNumber) || phoneNumberReceived.equals(momsNumber) ){
+                    if(body.equals("stop")){
+                        finish();
+                    }
                 }
             }
         };
@@ -166,5 +184,10 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
         this.unregisterReceiver(this.mIntentReceiver);
     }
 
+    private void loadParentsData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ParentsNumbers", Context.MODE_PRIVATE);
+        dadsNumber = sharedPreferences.getString("Dad", "650-555-1212");
+        momsNumber = sharedPreferences.getString("Mom", "650-555-1212");
+    }
 
 }
