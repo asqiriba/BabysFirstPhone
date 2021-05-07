@@ -6,7 +6,7 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="410dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.58"
         android:id="@+id/listView">
     </ListView>
@@ -26,28 +26,28 @@
             android:layout_marginTop="15dp" >
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Contacts"
-            android:id="@+id/contactAddButton"
-            android:background="#000000"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Contacts"
+                android:id="@+id/contactAddButton"
+                android:background="#000000"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_purple"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_purple"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Arrange List"
-            android:id="@+id/listEditButton"
-            android:background="#000000"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Arrange List"
+                android:id="@+id/listEditButton"
+                android:background="#000000"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
         </TableRow>
     </FrameLayout>
 </RelativeLayout>
