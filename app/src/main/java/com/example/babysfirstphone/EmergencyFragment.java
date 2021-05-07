@@ -85,7 +85,7 @@ public class EmergencyFragment extends Fragment {
                 type.add(arrayListContact.get(i).getType());
                 image.add(arrayListContact.get(i).getImage());
                 info.add(arrayListContact.get(i).getNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
-                name.add(arrayListContact.get(i).getName().toLowerCase());
+                name.add(arrayListContact.get(i).getName().toLowerCase().toLowerCase());
             }
         }
         // Obtains parents names from inside settings
@@ -217,8 +217,8 @@ public class EmergencyFragment extends Fragment {
     }
     private void loadParentsNames() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ParentsNames", Context.MODE_PRIVATE);
-        momsName = sharedPreferences.getString("Mom", "Default");
-        dadsName = sharedPreferences.getString("Dad", "Default");
+        momsName = sharedPreferences.getString("Mom", "Default").toLowerCase();
+        dadsName = sharedPreferences.getString("Dad", "Default").toLowerCase();
     }
 
     public void callPhoneNumber(String phoneNumber) {
