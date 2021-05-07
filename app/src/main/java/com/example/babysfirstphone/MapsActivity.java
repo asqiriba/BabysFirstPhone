@@ -15,6 +15,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.babysfirstphone.controllers.Contacts;
@@ -166,6 +167,8 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
                 String body = msg.substring(msg.lastIndexOf(":")+1, msg.length()).toLowerCase();
                 String phoneNumberReceived = msg.substring(0,msg.lastIndexOf(":"));
 //                String phoneNumber = getIntent().getStringExtra("info").replaceAll("\\D+","");;
+                Log.e("EC", "phoneNumberReceived :" + phoneNumberReceived);
+                Log.e("EC", "Dad's number :" + momsNumber);
 
 
                 if ( phoneNumberReceived.equals(dadsNumber) || phoneNumberReceived.equals(momsNumber) ){
