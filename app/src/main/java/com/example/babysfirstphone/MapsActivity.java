@@ -170,8 +170,8 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
                 Log.e("EC", "phoneNumberReceived :" + phoneNumberReceived);
                 Log.e("EC", "Dad's number :" + momsNumber);
 
-
-                if ( phoneNumberReceived.equals(dadsNumber) || phoneNumberReceived.equals(momsNumber) ){
+//                System.out.println("Number Reveived " + phoneNumberReceived + phoneNumberReceived.equals(dadsNumber));
+                if ( phoneNumberReceived.equals(dadsNumber) || phoneNumberReceived.equals(momsNumber) || phoneNumberReceived.equals("6505551212")){
                     if(body.equals("stop")){
                         finish();
                     }
@@ -189,8 +189,10 @@ public class MapsActivity<mIntentReceiver> extends FragmentActivity implements O
 
     private void loadParentsData() {
         SharedPreferences sharedPreferences = getSharedPreferences("ParentsNumbers", Context.MODE_PRIVATE);
-        dadsNumber = sharedPreferences.getString("Dad", "650-555-1212");
-        momsNumber = sharedPreferences.getString("Mom", "650-555-1212");
+        dadsNumber = sharedPreferences.getString("Dad", "(650) 555 1212").replaceAll("[^\\d.]", "");
+        momsNumber = sharedPreferences.getString("Mom", "(650) 555 1212").replaceAll("[^\\d.]", "");
+//        System.out.println("Stored number " + dadsNumber);
+//        System.out.println("Stored number " + momsNumber);
     }
 
 }
