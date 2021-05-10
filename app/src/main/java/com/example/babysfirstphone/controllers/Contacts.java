@@ -11,12 +11,12 @@ public class Contacts implements Serializable {
     private String contactName;
     private String contactNumber;
     private String contactType;
-    private int contactImage;
+    private String contactImage;
 
-    public Contacts(String name, String number, int imageId, String type) {
+    public Contacts(String name, String number, String imagePath, String type) {
         this.contactName = name;
         this.contactNumber = number;
-        this.contactImage = imageId;
+        this.contactImage = imagePath;
         this.contactType = type;
     }
 
@@ -38,8 +38,8 @@ public class Contacts implements Serializable {
         this.contactNumber = number;
     }
 
-    public int getImage() {
-        if(contactImage != 0) {
+    public String getImage() {
+        if(contactImage != null) {
             return contactImage;
         }
         else {
@@ -47,7 +47,7 @@ public class Contacts implements Serializable {
         }
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         this.contactImage = imageId;
     }
 

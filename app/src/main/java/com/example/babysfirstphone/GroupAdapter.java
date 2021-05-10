@@ -1,14 +1,12 @@
 package com.example.babysfirstphone;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,7 +18,7 @@ import java.util.List;
 public class GroupAdapter extends RecyclerView.Adapter{
 
     List<String> type;
-    List<Integer> images;
+    List<String> images;
     List<String> info;
     ArrayList<String> phoneNumbers = new ArrayList<>();
     Context context;
@@ -28,7 +26,7 @@ public class GroupAdapter extends RecyclerView.Adapter{
     String phone;
 
 
-    public GroupAdapter(Context ctx, List<String> type, List<Integer> images, List<String> info){
+    public GroupAdapter(Context ctx, List<String> type, List<String> images, List<String> info){
         this.type = type;
         this.images = images;
         this.info = info;
@@ -67,7 +65,7 @@ public class GroupAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolderVideo viewHolderVideo = (ViewHolderVideo) holder;
-        viewHolderVideo.gridIcon.setImageResource(images.get(position));
+        viewHolderVideo.gridIcon.setImageBitmap(BitmapFactory.decodeFile(images.get(position)));
 //        holder.itemView.setBackgroundColor(isSelected ? Color.WHITE : Color.TRANSPARENT);
         viewHolderVideo.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override

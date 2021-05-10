@@ -1,28 +1,25 @@
 package com.example.babysfirstphone;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.babysfirstphone.controllers.Caller;
-import com.example.babysfirstphone.controllers.Constants;
 import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -46,7 +43,7 @@ public class EmergencyFragment extends Fragment {
     ArrayList<Contacts> arrayListContact;
     List<String> name = new ArrayList<>();
     List<String> type = new ArrayList<>();
-    List<Integer> image = new ArrayList<>();
+    List<String> image = new ArrayList<>();
     List<String> info = new ArrayList<>();
     String dadPhoneNumber;
     String momPhoneNumber;
@@ -104,7 +101,7 @@ public class EmergencyFragment extends Fragment {
             if(type.get(indexOfDad).equals("phone")){
                 // Gets Dad info
                 dadPhoneNumber = info.get(indexOfDad);
-                dadBtn.setImageResource(image.get(indexOfDad));
+                dadBtn.setImageBitmap(BitmapFactory.decodeFile(image.get(indexOfDad)));
                 dadAllowed = true;
                 // Saves Mom info for MapActivity
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ParentsNumbers", Context.MODE_PRIVATE);
@@ -121,7 +118,7 @@ public class EmergencyFragment extends Fragment {
             if(type.get(indexOfMom).equals("phone")){
                 // Obtains Mom's info for MapActivity
                 momPhoneNumber = info.get(indexOfMom);
-                momBtn.setImageResource(image.get(indexOfMom));
+                momBtn.setImageBitmap(BitmapFactory.decodeFile(image.get(indexOfMom)));
                 momAllowed = true;
                 // Saves Mom's info
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ParentsNumbers", Context.MODE_PRIVATE);

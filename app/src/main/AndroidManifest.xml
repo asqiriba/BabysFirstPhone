@@ -57,6 +57,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.BabysFirstPhone.NoActionBar" />
         <activity android:name=".contacts.Images" />
+        <activity android:name=".contacts.ImagesReel" />
         <activity android:name=".ContactDataActivity" />
         <activity android:name=".SettingsInternal" />
         <!--

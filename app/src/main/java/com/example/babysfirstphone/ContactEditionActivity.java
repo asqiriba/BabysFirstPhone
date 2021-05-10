@@ -2,9 +2,12 @@ package com.example.babysfirstphone;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,8 +16,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.babysfirstphone.contacts.ContactEditActivity;
-import com.example.babysfirstphone.contacts.Images;
-import com.example.babysfirstphone.controllers.Constants;
 import com.example.babysfirstphone.controllers.Contacts;
 
 import java.util.Arrays;
@@ -30,7 +31,8 @@ public class ContactEditionActivity extends Activity {
     EditText editNumber;
     ImageView contactImage;
     Button saveButton;
-    private int image;
+    private String picturePath;
+    private static final int RESULT_LOAD_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,14 @@ public class ContactEditionActivity extends Activity {
         String name = lastIntent.getStringExtra("name");
         String number = lastIntent.getStringExtra("number");
         String type = lastIntent.getStringExtra("type");
-        int img = lastIntent.getIntExtra("image", Constants.DEFAULT_IMG);
+        String img = lastIntent.getStringExtra("image");
+
+        picturePath = img;
 
         editName.setText(name);
         editNumber.setText(number);
         contactType.setSelection(Arrays.asList(types).indexOf(type));
-        contactImage.setImageResource(img);
+        contactImage.setImageBitmap(BitmapFactory.decodeFile(img));
 
         /*
             Here we set the Click listener on Image view. So that it select the profile pictures.
@@ -63,21 +67,10 @@ public class ContactEditionActivity extends Activity {
         contactImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-                    After clicking on image the User is to move to controllers/Images Activity
-                    page where user select the profile picture of contact.
-                 */
-                Intent intent = new Intent(ContactEditionActivity.this, Images.class);
-
-                /*
-                    Here we used startActivityForResult() as we expecting some data back from Images
-                     Activity which is contact image selected by user.
-
-                     The contact image we get from Images activity, we extract it using code
-  >>>                  Line 97-100.
-                 */
-                startActivityForResult(intent,1);
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
 
@@ -98,7 +91,7 @@ public class ContactEditionActivity extends Activity {
                  */
                 Contacts contacts = new Contacts(editName.getText().toString(),
                         editNumber.getText().toString(),
-                        img,
+                        picturePath,
                         String.valueOf(contactType.getSelectedItem())
                 );
 
@@ -122,7 +115,6 @@ public class ContactEditionActivity extends Activity {
                 finish();
             }
         });
-
     }
 
     /*
@@ -132,7 +124,20 @@ public class ContactEditionActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        image = data.getExtras().getInt("img",1);
-        contactImage.setImageResource(image);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            ImageView imageView = (ImageView) findViewById(R.id.ContactImage);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
     }
 }

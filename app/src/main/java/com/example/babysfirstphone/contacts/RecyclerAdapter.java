@@ -1,4 +1,6 @@
 package com.example.babysfirstphone.contacts;
+
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,11 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.babysfirstphone.R;
-import com.example.babysfirstphone.controllers.Contacts;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.babysfirstphone.R;
+import com.example.babysfirstphone.controllers.Contacts;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(contacts.get(position).getImage());
+        holder.imageView.setImageBitmap(BitmapFactory.decodeFile(contacts.get(position).getImage()));
         holder.textView.setText(contacts.get(position).getName());
         holder.phoneView.setText(contacts.get(position).getNumberFormat());
         holder.typeView.setText(contacts.get(position).getType());
