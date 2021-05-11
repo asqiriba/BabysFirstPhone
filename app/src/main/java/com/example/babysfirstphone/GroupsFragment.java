@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.telephony.SmsManager;
@@ -14,14 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,8 +42,6 @@ import us.zoom.sdk.ZoomSDKAuthenticationListener;
 import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
 
-import static com.zipow.videobox.util.PreferenceUtil.getSharedPreferences;
-
 public class GroupsFragment extends Fragment {
     FloatingActionButton fab;
 
@@ -56,7 +51,7 @@ public class GroupsFragment extends Fragment {
     private BroadcastReceiver mIntentReceiver;
     ArrayList<String> phoneNumbers = new ArrayList<>();
     List<String> type;
-    List<Integer> image;
+    List<String> image;
     List<String> info;
     ArrayList<Contacts> arrayListContact;
     boolean isSelected = true;

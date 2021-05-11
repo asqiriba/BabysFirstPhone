@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.babysfirstphone.ContactDataActivity;
 import com.example.babysfirstphone.ContactEditionActivity;
 import com.example.babysfirstphone.R;
@@ -20,9 +23,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ContactEditActivity extends AppCompatActivity {
     ArrayList<Contacts> arrayListContact;
@@ -124,9 +124,6 @@ public class ContactEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        Log.e("onActivityResult", "RequestCode == " + requestCode);
-//        Log.e("onActivityResult", "ResultCode == " + resultCode);
-
         if (resultCode == 0) {
             loadData();
             contactAdapter.notifyDataSetChanged();
@@ -178,8 +175,8 @@ public class ContactEditActivity extends AppCompatActivity {
         Reads the created user into a json file for persistence.
 
         Usage:
-        ArrayList<Contacts> arrayListContact;
-        loadData();
+            create:  ArrayList<Contacts> arrayListContact;
+            declare: loadData();
 
      */
     private void loadData() {

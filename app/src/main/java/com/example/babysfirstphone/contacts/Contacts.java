@@ -1,15 +1,14 @@
 package com.example.babysfirstphone.contacts;
 
-
 import android.content.SharedPreferences;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Contacts extends AppCompatActivity {
     public static ArrayList<com.example.babysfirstphone.controllers.Contacts> arrayListContact;

@@ -1,7 +1,7 @@
 package com.example.babysfirstphone.contacts;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,15 +67,9 @@ public class ContactsAdapter extends BaseAdapter {
 
         //Retrieve data.
         Contacts contacts = contact.get(position);
-        imgContact.setImageResource(contacts.getImage());
+        imgContact.setImageBitmap(BitmapFactory.decodeFile(contacts.getImage()));
         contactName.setText("\t".concat(contacts.getName()));
         System.getProperty("line.separator");
-
-        //Print into console.
-//        Log.e("ContactsAdapter.getView", contacts.getName() + " ");
-//        Log.e("ContactsAdapter.getView", contacts.getNumber() + " ");
-//        Log.e("ContactsAdapter.getView", contacts.getType() + " ");
-//        Log.e("ContactsAdapter.getView", contacts.getImage() + " ");
 
         return view;
     }

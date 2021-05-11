@@ -2,6 +2,7 @@ package com.example.babysfirstphone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,12 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter{
 
     List<String> type;
-    List<Integer> images;
+    List<String> images;
     List<String> info;
     Context context;
     LayoutInflater inflater;
 
-    public Adapter(Context ctx, List<String> type, List<Integer> images, List<String> info){
+    public Adapter(Context ctx, List<String> type, List<String> images, List<String> info){
         this.type = type;
         this.images = images;
         this.info = info;
@@ -63,7 +64,7 @@ public class Adapter extends RecyclerView.Adapter{
         if(type.get(position).equals("phone")){
             ViewHolderPhone viewHolderPhone = (ViewHolderPhone) holder;
 //            viewHolderPhone.title.setText(type.get(position));
-            viewHolderPhone.gridIcon.setImageResource(images.get(position));
+            viewHolderPhone.gridIcon.setImageBitmap(BitmapFactory.decodeFile(images.get(position)));
             viewHolderPhone.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,7 +77,7 @@ public class Adapter extends RecyclerView.Adapter{
         } else if (type.get(position).equals("video")){
             ViewHolderVideo viewHolderVideo = (ViewHolderVideo) holder;
 //            viewHolderVideo.title.setText(type.get(position));
-            viewHolderVideo.gridIcon.setImageResource(images.get(position));
+            viewHolderVideo.gridIcon.setImageBitmap(BitmapFactory.decodeFile(images.get(position)));
             viewHolderVideo.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,7 +90,7 @@ public class Adapter extends RecyclerView.Adapter{
         }else{
             ViewHolderApp viewHolderApp = (ViewHolderApp) holder;
 //            viewHolderApp.title.setText(type.get(position));
-            viewHolderApp.gridIcon.setImageResource(images.get(position));
+            viewHolderApp.gridIcon.setImageBitmap(BitmapFactory.decodeFile(images.get(position)));
             viewHolderApp.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
