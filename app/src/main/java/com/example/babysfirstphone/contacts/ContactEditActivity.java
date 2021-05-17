@@ -40,6 +40,7 @@ public class ContactEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_internal_contact_create);
 
         loadData();
+
         listContacts = findViewById(R.id.listView);
         contactAddButton = findViewById(R.id.contactAddButton);
         contactListArrange = findViewById(R.id.listEditButton);
