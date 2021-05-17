@@ -1,6 +1,7 @@
 package com.example.babysfirstphone;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,7 +14,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import com.example.babysfirstphone.controllers.Caller;
+import com.example.babysfirstphone.controllers.Contacts;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -24,10 +28,14 @@ import androidx.core.content.ContextCompat;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import android.os.Bundle;
 import android.view.View;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
@@ -49,6 +57,7 @@ public class Router extends AppCompatActivity {
     private BroadcastReceiver mIntentReceiver;
     boolean videoCallRequest = false;
     private static final int PERMISSION_SEND_SMS = 123;
+    ArrayList<Contacts> arrayListContact;
 
 
 
@@ -77,6 +86,7 @@ public class Router extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_router);
         initializeSdk(this);
+        loadData();
         getData();
 
 
@@ -184,13 +194,31 @@ public class Router extends AppCompatActivity {
 
         }
         else{
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
-            if (launchIntent != null) {
-                startActivity(launchIntent);
+            try {
+//                String url = "https://pbskids.org/";
+
+                String url = getIntent().getStringExtra("names"); // get the website url from the name edit text
+//                Log.i("url: ", url);
+//                String url = arrayListContact.get(0).getName();
+                // add http or https if the download link does not contain it
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    url = "http://" + url;
+                }
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(myIntent);
                 finish();
-            } else {
-                Toast.makeText(Router.this, "There is no package available in android", Toast.LENGTH_LONG).show();
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(this, "No application can handle this request."
+                        + " Please install a webbrowser",  Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
+//            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
+//            if (launchIntent != null) {
+//                startActivity(launchIntent);
+//                finish();
+//            } else {
+//                Toast.makeText(Router.this, "There is no package available in android", Toast.LENGTH_LONG).show();
+//            }
         }
     }
 
@@ -355,6 +383,19 @@ public class Router extends AppCompatActivity {
             sendSms(phoneNumber, message);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("contact list", null);
+        Type type = new TypeToken<ArrayList<Contacts>>() {}.getType();
+        arrayListContact = gson.fromJson(json, type);
+
+        if (arrayListContact == null || arrayListContact.isEmpty()) {
+            arrayListContact = new ArrayList<>();
         }
     }
 

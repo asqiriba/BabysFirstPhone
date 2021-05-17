@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> type;
     List<String> images;
     List<String> info;
+    List<String> names;
     Adapter adapter;
     ArrayList<Contacts> arrayListContact;
 
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         type = new ArrayList<>();
         images = new ArrayList<>();
         info = new ArrayList<>();
+        names = new ArrayList<>();
 
         // Obtains data saved in device
         loadData();
@@ -82,9 +84,13 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0; i < arrayListContact.size() ; i++){
                 info.add(arrayListContact.get(i).getNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
             }
+            for(int i = 0; i < arrayListContact.size() ; i++){
+                names.add(arrayListContact.get(i).getName());
+            }
+
         }
 
-        adapter = new Adapter(this, type, images, info);
+        adapter = new Adapter(this, type, images, info,names);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         dataList.setLayoutManager(gridLayoutManager);
         dataList.setAdapter(adapter);
