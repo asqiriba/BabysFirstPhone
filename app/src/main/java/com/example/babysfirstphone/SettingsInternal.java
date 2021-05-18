@@ -29,6 +29,10 @@ public class SettingsInternal extends AppCompatActivity {
         zoomAccountButton.setOnClickListener(view -> startActivity(new Intent(view.getContext(),
                 ZoomLogIn.class)));
 
+        Button userNameButton = findViewById(R.id.userName);
+        userNameButton.setOnClickListener(view -> startActivity(new Intent(view.getContext(),
+                UserNameActivity.class)));
+
         Button emergencyContacts = findViewById(R.id.emergencyButton);
         emergencyContacts.setOnClickListener(new View.OnClickListener() {
             @Override

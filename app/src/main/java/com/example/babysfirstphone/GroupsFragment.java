@@ -55,7 +55,7 @@ public class GroupsFragment extends Fragment {
     List<String> info;
     ArrayList<Contacts> arrayListContact;
     boolean isSelected = true;
-    boolean timeCheck = false;
+    String name;
 
     private ZoomSDKAuthenticationListener authListener = new ZoomSDKAuthenticationListener() {
         /**
@@ -88,7 +88,8 @@ public class GroupsFragment extends Fragment {
         type = new ArrayList<>();
         image = new ArrayList<>();
         info = new ArrayList<>();
-
+        // Obtains name of user
+        loadUserName();
         // Obtains tile information
         loadData();
         // Only populates main view if there is any contacts stored
@@ -132,7 +133,7 @@ public class GroupsFragment extends Fragment {
                     button.startAnimation(animShake);
                     for(int i = 0; i < phoneNumbers.size() ; i++){
                         String number = String.valueOf(phoneNumbers.get(i));
-                        String message = "User would like you to join a video call. Reply with Y to accept.";
+                        String message = name + " would like you to join a video call. Reply with Y to accept.";
                         SmsManager smsManager = SmsManager.getDefault();
                         smsManager.sendTextMessage(number,null,message, null, null);
                     }
@@ -277,6 +278,12 @@ public class GroupsFragment extends Fragment {
         if (arrayListContact == null || arrayListContact.isEmpty()) {
             arrayListContact = new ArrayList<Contacts>();
         }
+    }
+
+    private void loadUserName() {
+//        SharedPreferences sharedPreferences = getSharedPreferences("userName", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("UserName", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("name", "User");
     }
     /**
      * Initialize the SDK with your credentials. This is required before accessing any of the

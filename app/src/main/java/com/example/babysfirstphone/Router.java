@@ -49,6 +49,7 @@ public class Router extends AppCompatActivity {
     private BroadcastReceiver mIntentReceiver;
     boolean videoCallRequest = false;
     private static final int PERMISSION_SEND_SMS = 123;
+    String name;
 
 
 
@@ -77,7 +78,11 @@ public class Router extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_router);
         initializeSdk(this);
+        // Obtains name of user
+        loadUserName();
+        // Parses through and routes data from tiles in front page
         getData();
+
 
 
     }
@@ -156,7 +161,7 @@ public class Router extends AppCompatActivity {
             if(ZoomSDK.getInstance().isLoggedIn()){
                 videoCallRequest = true;
                 String phoneNumber = getIntent().getStringExtra("info");
-                String message = "User would like you to join a video call. Reply with Y to accept.";
+                String message = name + " would like you to join a video call. Reply with Y to accept.";
                 sendSMS(phoneNumber, message);
 
                 // Wait 30 Seconds before going back
@@ -237,13 +242,13 @@ public class Router extends AppCompatActivity {
                                         public void onTick(long millisUntilFinished) { }
                                         public void onFinish() {
                                             String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
-                                            String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                            String joinMessage = name + " is waiting for you in a meeting room. Please click on the link to join room: ";
                                             sendSMS(phoneNumber, joinMessage + meetingURL);
                                             videoCallRequest = false;
                                         }
                                     }.start();
                                 }else{
-                                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                    String joinMessage = name + " is waiting for you in a meeting room. Please click on the link to join room: ";
                                     sendSMS(phoneNumber, joinMessage + meetingURL);
                                     videoCallRequest = false;
                                 }
@@ -278,13 +283,13 @@ public class Router extends AppCompatActivity {
                                         public void onTick(long millisUntilFinished) { }
                                         public void onFinish() {
                                             String meetingURL = ZoomSDK.getInstance().getInMeetingService().getCurrentMeetingUrl();
-                                            String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                            String joinMessage = name + " is waiting for you in a meeting room. Please click on the link to join room: ";
                                             sendSMS(phoneNumber, joinMessage + meetingURL);
                                             videoCallRequest = false;
                                         }
                                     }.start();
                                 }else{
-                                    String joinMessage = "User is waiting for you in a meeting room. Please click on the link to join room: ";
+                                    String joinMessage = name + " is waiting for you in a meeting room. Please click on the link to join room: ";
                                     sendSMS(phoneNumber, joinMessage + meetingURL);
                                     videoCallRequest = false;
                                 }
@@ -356,6 +361,11 @@ public class Router extends AppCompatActivity {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void loadUserName() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserName", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("name", "User");
     }
 
 }

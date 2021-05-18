@@ -17,6 +17,18 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -25,11 +37,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BabysFirstPhone.NoActionBar">
-        <activity android:name=".contacts.ContactListEditActivity"></activity>
+        <activity
+            android:name=".UserNameActivity"
+            android:label="@string/title_activity_user_name"
+            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar"></activity>
+        <activity android:name=".contacts.ContactListEditActivity" />
         <activity
             android:name=".EmergencyContacts"
             android:label="@string/title_activity_emergency_contacts"
-            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar"></activity>
+            android:theme="@style/Theme.BabysFirstPhone.NoActionBar.NoActionBar" />
         <activity
             android:name=".ZoomLogIn"
             android:label="@string/title_activity_zoom_log_in"
@@ -49,7 +65,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps2" />
-
         <activity android:name=".ContactEditionActivity" />
         <activity
             android:name=".Router"
@@ -76,6 +91,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -86,18 +102,5 @@
             </intent-filter>
         </receiver>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
 
 </manifest>

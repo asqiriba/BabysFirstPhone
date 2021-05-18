@@ -20,4 +20,5 @@
         <item>Mom</item>
         <item>Dad</item>
     </string-array>
+    <string name="title_activity_user_name">UserNameActivity</string>
 </resources>

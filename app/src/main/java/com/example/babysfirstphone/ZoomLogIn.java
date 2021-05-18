@@ -72,6 +72,8 @@ public class ZoomLogIn extends AppCompatActivity {
 //        email = "babysfirstphone550@gmail.com";
 //        password = "CompSci550";
 
+
+
         // Settings Pass Code
         emailText = (EditText) findViewById(R.id.email_text);
         passwordText = (EditText) findViewById(R.id.password_text);
@@ -79,6 +81,12 @@ public class ZoomLogIn extends AppCompatActivity {
         logoutConfirm = (Button) findViewById(R.id.button_logout);
         emailText.addTextChangedListener(loginTextWatcher);
         passwordText.addTextChangedListener(loginTextWatcher);
+
+        // Checks if it can log in user after app shutdown
+        if(!ZoomSDK.getInstance().isLoggedIn()){
+            loadLoginInfo();
+            login(email, password);
+        }
 
         // Checks if user is logged in
         logoutConfirm.setEnabled(ZoomSDK.getInstance().isLoggedIn());
@@ -167,8 +175,7 @@ public class ZoomLogIn extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
             Toast.makeText(ZoomLogIn.this, "Already Logged In!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(ZoomLogIn.this, "Login Failed", Toast.LENGTH_SHORT).show();
         }
     }
@@ -188,4 +195,12 @@ public class ZoomLogIn extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     };
+
+    private void loadLoginInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
+        email = sharedPreferences.getString("userName", "babysfirstphone550@gmail.com");
+        password = sharedPreferences.getString("password", "CompSci550");
+//        System.out.println("Stored number " + dadsNumber);
+//        System.out.println("Stored number " + momsNumber);
+    }
 }

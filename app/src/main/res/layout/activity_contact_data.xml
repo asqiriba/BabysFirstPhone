@@ -31,7 +31,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentStart="false"
-        android:layout_below="@+id/ContactImage"
+        android:layout_below="@+id/dropdown"
         android:layout_alignParentLeft="false"/>
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/editNumber"
+        android:layout_below="@+id/ContactImage"
         android:background="@drawable/spinnershape"
         android:textColor="#A16AB6"
         android:layout_marginTop="20dp"
@@ -64,12 +64,12 @@
         android:background="@drawable/buttonshape"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:id="@+id/save"
         android:text="Save"
         android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/editNumber"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="86dp"
         android:textColor="#FFFFFF"
         android:textStyle="bold"/>
 </RelativeLayout>

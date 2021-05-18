@@ -1,6 +1,7 @@
 package com.example.babysfirstphone;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -9,14 +10,19 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+
 import com.example.babysfirstphone.contacts.ContactEditActivity;
 import com.example.babysfirstphone.controllers.Contacts;
+import com.zipow.videobox.confapp.meeting.immersive.ZmImmersiveTouchEventHandler;
 
 /*
     In ContactDataActivity class, we take the inputs from user like Name, Number,
@@ -44,6 +50,34 @@ public class ContactDataActivity extends Activity {
 
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, types);
         contactType.setAdapter(dropdownAdapter);
+
+
+        /////////////////////////////////////////  HERE JIE ////////////////////////////////////////////////////////////
+        contactType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String check = contactType.getSelectedItem().toString();
+                System.out.println(check);
+
+                if(check.equals("app")){
+                    editName.setHint("Enter Website address");
+                    editNumber.setEnabled(false);
+                    editNumber.setHint("Nothing needed here.");
+                }else{
+                    editName.setHint("Contact Name");
+                    editNumber.setEnabled(true);
+                    editNumber.setHint("1 (000) 000-0000");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        /////////////////////////////////////////  HERE JIE ////////////////////////////////////////////////////////////
+
+
 
         /*
             Here we set the Click listener on Image view. So that it select the profile pictures.
@@ -88,6 +122,7 @@ public class ContactDataActivity extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /////////////////////////////////////////  ALSO HERE JIE ////////////////////////////////////////////////////////////
                 /*
                     Here we created the object of Contact class and called the Parameterised
                     Constructor.
@@ -97,6 +132,7 @@ public class ContactDataActivity extends Activity {
                         picturePath,
                         String.valueOf(contactType.getSelectedItem())
                 );
+                /////////////////////////////////////////  ALSO HERE JIE ////////////////////////////////////////////////////////////
 
                 /*
                     When user click the SAVE button, the activity goes from here to
@@ -141,6 +177,17 @@ public class ContactDataActivity extends Activity {
 
             ImageView imageView = (ImageView) findViewById(R.id.ContactImage);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
+    }
+
+    public static class Utils{
+        public static void hideKeyboard(@NonNull Activity activity) {
+            // Check if no view has focus:
+            View view = activity.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
         }
     }
 }
