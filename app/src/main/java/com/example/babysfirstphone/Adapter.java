@@ -20,14 +20,16 @@ public class Adapter extends RecyclerView.Adapter{
     List<String> type;
     List<String> images;
     List<String> info;
+    List<String> names;
     Context context;
     LayoutInflater inflater;
 
-    public Adapter(Context ctx, List<String> type, List<String> images, List<String> info){
+    public Adapter(Context ctx, List<String> type, List<String> images, List<String> info,List<String> names){
         this.type = type;
         this.images = images;
         this.info = info;
         this.inflater = LayoutInflater.from(ctx);
+        this.names = names;
     }
 
     @Override
@@ -97,6 +99,7 @@ public class Adapter extends RecyclerView.Adapter{
                     Intent intent = new Intent(v.getContext(), Router.class);
                     intent.putExtra("type", type.get(position));
                     intent.putExtra("info", info.get(position));
+                    intent.putExtra("names", names.get(position));
                     v.getContext().startActivity(intent);
                 }
             });
