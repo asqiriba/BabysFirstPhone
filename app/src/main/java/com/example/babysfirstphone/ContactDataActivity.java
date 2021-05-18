@@ -9,6 +9,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -36,6 +41,7 @@ public class ContactDataActivity extends Activity {
     Button saveButton;
     private String picturePath;
     private static final int RESULT_LOAD_IMAGE = 1;
+    String check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +62,14 @@ public class ContactDataActivity extends Activity {
         contactType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String check = contactType.getSelectedItem().toString();
+                check = contactType.getSelectedItem().toString();
                 System.out.println(check);
 
                 if(check.equals("app")){
                     editName.setHint("Enter Website address");
                     editNumber.setEnabled(false);
                     editNumber.setHint("Nothing needed here.");
+
                 }else{
                     editName.setHint("Contact Name");
                     editNumber.setEnabled(true);
@@ -76,6 +83,37 @@ public class ContactDataActivity extends Activity {
             }
         });
         /////////////////////////////////////////  HERE JIE ////////////////////////////////////////////////////////////
+        // To check whether the url link format is valid, if not, then save button will be disabled.
+        editName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(contactType.getSelectedItem().toString().equals("app")){
+                    String url = s.toString();
+//                    Log.e("url",url);
+                    if(!Patterns.WEB_URL.matcher(url).matches()){
+                        saveButton.setEnabled(false);
+                        editName.setError("Invalid url link");
+
+                    }else{
+                        saveButton.setEnabled(true);
+                    }
+                }
+
+            }
+        });
+
+
 
 
 
