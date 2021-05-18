@@ -195,11 +195,7 @@ public class Router extends AppCompatActivity {
         }
         else{
             try {
-//                String url = "https://pbskids.org/";
-
                 String url = getIntent().getStringExtra("names"); // get the website url from the name edit text
-//                Log.i("url: ", url);
-//                String url = arrayListContact.get(0).getName();
                 // add http or https if the download link does not contain it
                 if (!url.startsWith("http://") && !url.startsWith("https://")) {
                     url = "http://" + url;
