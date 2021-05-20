@@ -11,7 +11,7 @@ The Baby’s First Phone is an Android app designed for young kids who cannot re
 - *So easy even a baby can use it!*
 
 <p align="center">
-<img src="app\src\main\res\drawable\README.png" alt="drawing" width="200"/>
+<img src="app\src\main\res\drawable\README.png" alt="drawing" width="300"/>
 </p>
 
 ****
