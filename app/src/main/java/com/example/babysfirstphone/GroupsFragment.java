@@ -214,7 +214,7 @@ public class GroupsFragment extends Fragment {
                     toast.show();
                     ArrayList<String> otherPhoneNumbers = adapter.getArrayList();
                     otherPhoneNumbers.remove(phoneNumberReceived);
-                    String prompt = "User is waiting for you in this room: ";
+                    String prompt = name + " is waiting for you in this room: ";
                     String message = prompt + "https://us05web.zoom.us/j/2821683656?pwd=WndHdytYZXNaNkFma2p4R2hTR0ZvUT09";
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNumberReceived,null,message, null, null);
@@ -228,7 +228,7 @@ public class GroupsFragment extends Fragment {
                     if(!otherPhoneNumbers.isEmpty()){
                         for(int i = 0; i < otherPhoneNumbers.size() ; i++){
                             String number = String.valueOf(otherPhoneNumbers.get(i));
-                            prompt = "User is on a group call. Join by following this link: ";
+                            prompt = name + " is on a group call. Join by following this link: ";
                             message = prompt + "https://us05web.zoom.us/j/2821683656?pwd=WndHdytYZXNaNkFma2p4R2hTR0ZvUT09";
                             smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(number,null,message, null, null);
