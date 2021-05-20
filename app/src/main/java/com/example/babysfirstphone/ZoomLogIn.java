@@ -82,11 +82,6 @@ public class ZoomLogIn extends AppCompatActivity {
         emailText.addTextChangedListener(loginTextWatcher);
         passwordText.addTextChangedListener(loginTextWatcher);
 
-        // Checks if it can log in user after app shutdown
-        if(!ZoomSDK.getInstance().isLoggedIn()){
-            loadLoginInfo();
-            login(email, password);
-        }
 
         // Checks if user is logged in
         logoutConfirm.setEnabled(ZoomSDK.getInstance().isLoggedIn());
@@ -110,6 +105,8 @@ public class ZoomLogIn extends AppCompatActivity {
                 ZoomSDK.getInstance().logoutZoom();
                 if (!ZoomSDK.getInstance().isLoggedIn()){
                     logoutConfirm.setEnabled(false);
+                    // Stores username and password
+                    storeLoginInfo("None", "None");
                     Toast.makeText(ZoomLogIn.this, "Logged out Successfully", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -153,11 +150,7 @@ public class ZoomLogIn extends AppCompatActivity {
             ZoomSDK.getInstance().addAuthenticationListener(authListener);
 
             // Stores username and password
-            SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("userName", username);
-            editor.putString("password", password);
-            editor.apply();
+            storeLoginInfo(username, password);
             logoutConfirm.setEnabled(true);
             // Hides Keyboard
             View view = this.getCurrentFocus();
@@ -196,11 +189,14 @@ public class ZoomLogIn extends AppCompatActivity {
         }
     };
 
-    private void loadLoginInfo() {
+    /**
+     * Obtains stored login information for zoom
+     */
+    private void storeLoginInfo(String email, String password) {
         SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
-        email = sharedPreferences.getString("userName", "babysfirstphone550@gmail.com");
-        password = sharedPreferences.getString("password", "CompSci550");
-//        System.out.println("Stored number " + dadsNumber);
-//        System.out.println("Stored number " + momsNumber);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userName", email);
+        editor.putString("password", password);
+        editor.apply();
     }
 }

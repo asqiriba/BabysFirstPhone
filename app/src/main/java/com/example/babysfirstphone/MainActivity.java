@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -33,6 +35,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.zoom.sdk.ZoomApiError;
+import us.zoom.sdk.ZoomAuthenticationError;
+import us.zoom.sdk.ZoomSDK;
+import us.zoom.sdk.ZoomSDKAuthenticationListener;
+import us.zoom.sdk.ZoomSDKInitParams;
+import us.zoom.sdk.ZoomSDKInitializeListener;
+
 public class MainActivity extends AppCompatActivity {
     /*
         To retrieve an image from the contact ArrayList as an ImageView:
@@ -48,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
     List<String> names;
     Adapter adapter;
     ArrayList<Contacts> arrayListContact;
+//    ZoomLogIn zoomLogIn = new ZoomLogIn();
+    String email;
+    String password;
+    boolean isLoggedIntoZoom;
 
     View mainScreen;
     ImageButton paintBtn;
@@ -55,10 +68,32 @@ public class MainActivity extends AppCompatActivity {
     String COLOR = "colorTheme";
     int getNum;
 
+
+    private ZoomSDKAuthenticationListener authListener = new ZoomSDKAuthenticationListener() {
+        /**
+         * This callback is invoked when a result from the SDK's request to the auth server is
+         * received.
+         */
+        @Override
+        public void onZoomSDKLoginResult(long result) {
+            if (result == ZoomAuthenticationError.ZOOM_AUTH_ERROR_SUCCESS) {
+                // Once we verify that the request was successful, we may start the meeting
+//                startMeeting(MainActivity.this);
+//                Toast.makeText(MainActivity.this, "Success!!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onZoomSDKLogoutResult(long l) {}@Override
+        public void onZoomIdentityExpired() {}@Override
+        public void onZoomAuthIdentityExpired() {}
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Gets media access.
         askForMediaPermissions();
@@ -69,6 +104,25 @@ public class MainActivity extends AppCompatActivity {
         images = new ArrayList<>();
         info = new ArrayList<>();
         names = new ArrayList<>();
+
+        // Logs into zoom if the correct credentials are stored in the app
+        initializeSdk(this);
+        loadLoginInfo();
+        if(!ZoomSDK.getInstance().isLoggedIn()){
+            // Wait 1 Seconds before trying to login to zoom
+            long maxCounter = 1000;
+            long diff = 1000;
+            new CountDownTimer(maxCounter , diff ) {
+                public void onTick(long millisUntilFinished) {
+                    long diff = maxCounter - millisUntilFinished;
+                    long time = diff  / 1000;
+                    //here you can have your logic to set text to edittext
+                }
+                public void onFinish() {
+                    login(email, password);
+                }
+            }.start();
+        }
 
         // Obtains data saved in device
         loadData();
@@ -204,4 +258,56 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
             };
+
+
+
+    /**
+     * Initialize the SDK with your credentials. This is required before accessing any of the
+     * SDK's meeting-related functionality.
+     */
+    public void initializeSdk(Context context) {
+        ZoomSDK sdk = ZoomSDK.getInstance();
+        // TODO: Do not use hard-coded values for your key/secret in your app in production!
+        ZoomSDKInitParams params = new ZoomSDKInitParams();
+        params.appKey = "ULk65Cb44u1qZwp6GGc42XCYCcRCFjaYrfyM"; // TODO: Retrieve your SDK key and enter it here
+        params.appSecret = "dOSV1LbPbti9xxxNMk75TlY3Q91K2Eo0eTuu"; // TODO: Retrieve your SDK secret and enter it here
+        params.domain = "zoom.us";
+        params.enableLog = true;
+        // TODO: Add functionality to this listener (e.g. logs for debugging)
+        ZoomSDKInitializeListener listener = new ZoomSDKInitializeListener() {
+            /**
+             * @param errorCode {@link us.zoom.sdk.ZoomError#ZOOM_ERROR_SUCCESS} if the SDK has been initialized successfully.
+             */
+            @Override
+            public void onZoomSDKInitializeResult(int errorCode, int internalErrorCode) {}
+
+            @Override
+            public void onZoomAuthIdentityExpired() {}
+        };
+        sdk.initialize(context, listener, params);
+    }
+
+    /**
+     * Log into a Zoom account through the SDK using your email and password. For more information,
+     * see {@link ZoomSDKAuthenticationListener#onZoomSDKLoginResult} in the {@link #authListener}.
+     */
+    public void login(String username, String password) {
+        int result = ZoomSDK.getInstance().loginWithZoom(username, password);
+        if (result == ZoomApiError.ZOOM_API_ERROR_SUCCESS) {
+            // Request executed, listen for result to start meeting
+            ZoomSDK.getInstance().addAuthenticationListener(authListener);
+//            Toast.makeText(MainActivity.this, "Logged in.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Obtains stored login information for zoom
+     */
+    private void loadLoginInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
+        email = sharedPreferences.getString("userName", "babysfirstphone550@gmail.com");
+        password = sharedPreferences.getString("password", "CompSci550");
+//        System.out.println("Stored email: " + email);
+//        System.out.println("Stored password: " + password);
+    }
 }

@@ -58,6 +58,8 @@ public class Router extends AppCompatActivity {
     boolean videoCallRequest = false;
     private static final int PERMISSION_SEND_SMS = 123;
     String name;
+    String email;
+    String password;
     ArrayList<Contacts> arrayListContact;
 
 
@@ -154,7 +156,7 @@ public class Router extends AppCompatActivity {
         MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
         JoinMeetingOptions options = new JoinMeetingOptions();
         JoinMeetingParams params = new JoinMeetingParams();
-        params.displayName = ""; // TODO: Enter your name
+        params.displayName = ""; //
         params.meetingNo = meetingNumber;
         params.password = password;
         meetingService.joinMeetingWithParams(context, params, options);
@@ -191,11 +193,16 @@ public class Router extends AppCompatActivity {
                     }
                 }.start();
             }else{
-
                 Toast.makeText(this, "Please sign in to your Zoom account.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 this.startActivity(intent);
             }
+//            else{
+//
+//                Toast.makeText(this, "Please sign in to your Zoom account.", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, MainActivity.class);
+//                this.startActivity(intent);
+//            }
 
         }
         else{
@@ -282,9 +289,7 @@ public class Router extends AppCompatActivity {
                     } else {
 //                        String email = "babysfirstphone550@gmail.com";
 //                        String password = "CompSci550";
-                        SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
-                        String email = sharedPreferences.getString("userName", "defaultValue");
-                        String password = sharedPreferences.getString("password", "defaultValue");
+                        loadLoginInfo();
                         login(email, password);
                         startMeeting(Router.this);
 
@@ -403,6 +408,13 @@ public class Router extends AppCompatActivity {
         if (arrayListContact == null || arrayListContact.isEmpty()) {
             arrayListContact = new ArrayList<>();
         }
+    }
+    private void loadLoginInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ZoomLogInInfo", Context.MODE_PRIVATE);
+        email = sharedPreferences.getString("userName", "babysfirstphone550@gmail.com");
+        password = sharedPreferences.getString("password", "CompSci550");
+//        System.out.println("Stored email: " + email);
+//        System.out.println("Stored password: " + password);
     }
 
 }
